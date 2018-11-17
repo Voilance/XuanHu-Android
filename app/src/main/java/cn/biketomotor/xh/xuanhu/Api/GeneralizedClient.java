@@ -37,7 +37,7 @@ public class GeneralizedClient<Req, Resp> {
             return Result.ok(respAdapter.fromJson(json));
         } catch (IOException e) {
             e.printStackTrace();
-            return Result.err("JSON解析失败");
+            return Result.err("JSON解析失败：" + json);
         }
     }
 
@@ -48,9 +48,6 @@ public class GeneralizedClient<Req, Resp> {
             RequestBody body = RequestBody.create(CONTENT_TYPE, content);
             Request request = new Request.Builder().url(new URL(PROTOCOL, HOST, path)).post(body).build();
             Response response = client.newCall(request).execute();
-            if (!response.isSuccessful()) {
-                return Result.err("请求失败，HTTP状态码：" + response.code());
-            }
             ResponseBody responseBody = response.body();
             if (responseBody != null) {
                 return parse(responseBody.string());

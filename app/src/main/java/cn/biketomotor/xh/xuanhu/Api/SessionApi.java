@@ -18,18 +18,6 @@ public enum SessionApi {
         }
     }
 
-    public Result<LogoutResult> logout() {
-        GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, LOGOUT_PATH);
-        LogoutForm form = new LogoutForm();
-        return client.process(form);
-    }
-
-    public Result<LoginResult> login(String email, String password) {
-        GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, LOGIN_PATH);
-        LoginForm form = new LoginForm(email, password);
-        return client.process(form);
-    }
-
     public static class LoginResult {
         public boolean success = true;
         public int id;
@@ -42,10 +30,22 @@ public enum SessionApi {
         public String description;
     }
 
+    public Result<LoginResult> login(String email, String password) {
+        GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, LOGIN_PATH);
+        LoginForm form = new LoginForm(email, password);
+        return client.process(form);
+    }
+
     static class LogoutForm {
     }
 
     public static class LogoutResult {
         public boolean success = true;
+    }
+
+    public Result<LogoutResult> logout() {
+        GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, LOGOUT_PATH);
+        LogoutForm form = new LogoutForm();
+        return client.process(form);
     }
 }
