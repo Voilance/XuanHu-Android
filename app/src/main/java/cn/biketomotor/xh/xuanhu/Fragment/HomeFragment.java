@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Activity.MainActivity;
-import cn.biketomotor.xh.xuanhu.Adapter.CommentItemAdapter;
+import cn.biketomotor.xh.xuanhu.Adapter.NewCommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -26,10 +26,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private Button btSearch;
     private Button btMore;
 
-    private MainActivity mainActivity;
-    private List<CommentItem> commentList;
-    private CommentItemAdapter commentItemAdapter;
-    private RecyclerView recyclerView;
+    private MainActivity          mainActivity;
+    private List<CommentItem>     commentList;
+    private NewCommentItemAdapter newCommentItemAdapter;
+    private RecyclerView          recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,14 +44,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mainActivity = (MainActivity)getActivity();
         recyclerView = view.findViewById(R.id.rv_comment_list);
         commentList = new ArrayList<>();
-        commentItemAdapter = new CommentItemAdapter(commentList);
-        commentItemAdapter.setItemClickListener(new CommentItemAdapter.onItemClickListener() {
+        newCommentItemAdapter = new NewCommentItemAdapter(commentList);
+        newCommentItemAdapter.setItemClickListener(new NewCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Toast.makeText(mainActivity, commentList.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
             }
         });
-        recyclerView.setAdapter(commentItemAdapter);
+        recyclerView.setAdapter(newCommentItemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
 
         getComment();
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
         commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
         commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-        commentItemAdapter.notifyDataSetChanged();
+        newCommentItemAdapter.notifyDataSetChanged();
     }
 
     @Override
