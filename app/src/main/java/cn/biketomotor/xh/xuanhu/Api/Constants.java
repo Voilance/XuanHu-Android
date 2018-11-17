@@ -1,7 +1,9 @@
 package cn.biketomotor.xh.xuanhu.Api;
 
+import okhttp3.MediaType;
+
 class Constants {
     static final String PROTOCOL = "https";
     static final String HOST = "xh.biketomotor.cn";
-    static final String CONTENT_TYPE = "application/json;charset=UTF-8";
+    static final MediaType CONTENT_TYPE = MediaType.parse("application/json;charset=UTF-8");
 }
