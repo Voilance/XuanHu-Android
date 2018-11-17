@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -47,8 +48,9 @@ public enum SessionApi {
     }
 
     public Result<LoginResult> login(String email, String password) {
-        GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, LOGIN_PATH);
+        HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LOGIN_PATH).build();
+        GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, path);
         LoginForm form = new LoginForm(email, password);
-        return client.process(form);
+        return client.post(form);
     }
 }
