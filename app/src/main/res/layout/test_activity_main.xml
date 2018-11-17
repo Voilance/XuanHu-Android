@@ -4,9 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_comment_list"
+    <FrameLayout
+        android:id="@+id/fl_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottom"></FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/bt_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="首页"/>
+
+        <Button
+            android:id="@+id/bt_mine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="我的"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
