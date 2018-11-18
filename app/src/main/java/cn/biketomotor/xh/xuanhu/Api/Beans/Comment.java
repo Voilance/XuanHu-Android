@@ -1,6 +1,7 @@
 package cn.biketomotor.xh.xuanhu.Api.Beans;
 
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
     public int id;
@@ -11,4 +12,6 @@ public class Comment {
     public int voteDown;
     public User user;
     public Course course;
+    public int voteValue;
+    public List<Comment> nestedComment;
 }

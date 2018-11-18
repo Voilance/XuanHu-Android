@@ -1,12 +1,12 @@
 package cn.biketomotor.xh.xuanhu.Api;
 
 import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.JsonDataException;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Date;
 
 import okhttp3.HttpUrl;
@@ -17,8 +17,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 import static cn.biketomotor.xh.xuanhu.Api.Constants.CONTENT_TYPE;
-import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
-import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
 public class GeneralizedClient<Req, Resp> {
     private Moshi moshi;
@@ -42,7 +40,7 @@ public class GeneralizedClient<Req, Resp> {
     protected Result<Resp> parse(String json) {
         try {
             return Result.ok(respAdapter.fromJson(json));
-        } catch (IOException e) {
+        } catch (JsonDataException | IOException e) {
             e.printStackTrace();
             return Result.err("JSON解析失败：" + json);
         }
@@ -55,14 +53,11 @@ public class GeneralizedClient<Req, Resp> {
             RequestBody body = RequestBody.create(CONTENT_TYPE, content);
             Request request = new Request.Builder().url(path).post(body).build();
             Response response = client.newCall(request).execute();
-            if (!response.isSuccessful()) {
-                return Result.err("请求失败，HTTP状态码：" + response.code());
-            }
             ResponseBody responseBody = response.body();
             if (responseBody != null) {
                 return parse(responseBody.string());
             } else {
-                return Result.err("响应没有Body部分");
+                return Result.err("响应没有Body部分，状态码：" + response.code());
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -82,7 +77,7 @@ public class GeneralizedClient<Req, Resp> {
             if (responseBody != null) {
                 return parse(responseBody.string());
             } else {
-                return Result.err("响应没有Body部分");
+                return Result.err("响应没有Body部分，状态码：" + response.code());
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
