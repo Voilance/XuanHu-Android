@@ -11,21 +11,23 @@ import java.util.List;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
-public class CommentItemAdapter extends RecyclerView.Adapter<CommentItemAdapter.ViewHolder> {
+public class HistoryCommentItemAdapter extends RecyclerView.Adapter<HistoryCommentItemAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvTitleName;
-        private TextView tvContent;
+        private TextView tvTitle;
+        private TextView tvTime;
         private TextView tvVoteUp;
         private TextView tvVoteDown;
+        private TextView tvContent;
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvTitleName = itemView.findViewById(R.id.tv_title_name);
-            tvContent = itemView.findViewById(R.id.tv_content);
+            tvTitle = itemView.findViewById(R.id.tv_course_title);
+            tvTime = itemView.findViewById(R.id.tv_time);
             tvVoteUp = itemView.findViewById(R.id.tv_vote_up);
             tvVoteDown = itemView.findViewById(R.id.tv_vote_down);
+            tvContent = itemView.findViewById(R.id.tv_content);
         }
     }
 
@@ -36,13 +38,13 @@ public class CommentItemAdapter extends RecyclerView.Adapter<CommentItemAdapter.
     private List<CommentItem> commentItemList;
     private onItemClickListener clickListener;
 
-    public CommentItemAdapter(List<CommentItem> list) {
+    public HistoryCommentItemAdapter(List<CommentItem> list) {
         this.commentItemList = list;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_comment_at_main, parent, false);
+    public HistoryCommentItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_comment_at_mine, parent, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,11 +59,12 @@ public class CommentItemAdapter extends RecyclerView.Adapter<CommentItemAdapter.
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.tvTitleName.setText(commentItemList.get(position).getCourseTitle() + "-" + commentItemList.get(position).getUserName());
-        holder.tvContent.setText(commentItemList.get(position).getContent());
+    public void onBindViewHolder(final HistoryCommentItemAdapter.ViewHolder holder, int position) {
+        holder.tvTitle.setText(commentItemList.get(position).getCourseTitle());
+        holder.tvTime.setText(commentItemList.get(position).getCreatedAt());
         holder.tvVoteUp.setText(String.valueOf(commentItemList.get(position).getVoteUp()));
         holder.tvVoteDown.setText(String.valueOf(commentItemList.get(position).getVoteDown()));
+        holder.tvContent.setText(commentItemList.get(position).getContent());
         holder.itemView.setTag(position);
     }
 
@@ -70,7 +73,8 @@ public class CommentItemAdapter extends RecyclerView.Adapter<CommentItemAdapter.
         return commentItemList.size();
     }
 
-    public void setItemClickListener(onItemClickListener listener) {
+    public void setItemClickListener(HistoryCommentItemAdapter.onItemClickListener listener) {
         this.clickListener = listener;
     }
+
 }

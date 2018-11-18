@@ -5,18 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import cn.biketomotor.xh.xuanhu.Adapter.CommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Class.Sys;
 import cn.biketomotor.xh.xuanhu.Fragment.HomeFragment;
-import cn.biketomotor.xh.xuanhu.Item.CommentItem;
+import cn.biketomotor.xh.xuanhu.Fragment.MineFragment;
 import cn.biketomotor.xh.xuanhu.R;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -49,7 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 replaceFragment(new HomeFragment());
                 break;
             case R.id.bt_mine:
-//                replaceFragment;
+                replaceFragment(new MineFragment());
                 break;
             default:
                 break;

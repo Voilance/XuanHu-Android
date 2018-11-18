@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/rl_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/default_avatar"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_avatar"
+            tools:text="user name"/>
+
+        <Button
+            android:id="@+id/bt_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="注销登陆"/>
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/rl_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_info">
+        
+        <LinearLayout
+            android:id="@+id/ll_option"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            
+            <Button
+                android:id="@+id/bt_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的评论"/>
+
+            <Button
+                android:id="@+id/bt_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的赞同"/>
+
+            <Button
+                android:id="@+id/bt_disagree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的反对"/>
+            
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_comment_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ll_option"/>
+        
+    </RelativeLayout>
+
+</RelativeLayout>
