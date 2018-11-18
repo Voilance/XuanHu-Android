@@ -3,13 +3,7 @@ package cn.biketomotor.xh.xuanhu.Api;
 import java.util.Date;
 
 import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
-import static cn.biketomotor.xh.xuanhu.Api.Constants.CONTENT_TYPE;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
@@ -56,8 +50,9 @@ public enum SessionApi {
     }
 
     public Result<LogoutResult> logout() {
-        GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, LOGOUT_PATH);
+        HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LOGOUT_PATH).build();
+        GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, path);
         LogoutForm form = new LogoutForm();
-        return client.process(form);
+        return client.post(form);
     }
 }
