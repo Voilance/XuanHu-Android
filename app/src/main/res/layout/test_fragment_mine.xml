@@ -22,6 +22,13 @@
             android:layout_toRightOf="@id/iv_avatar"
             tools:text="user name"/>
 
+        <Button
+            android:id="@+id/bt_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="注销登陆"/>
+
     </RelativeLayout>
     
     <RelativeLayout
@@ -59,7 +66,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_comment_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/ll_option"/>
         
     </RelativeLayout>

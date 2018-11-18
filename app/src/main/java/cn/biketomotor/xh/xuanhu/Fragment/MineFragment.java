@@ -74,6 +74,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 // 点击头像，如果已经登陆，则跳转到编辑个人信息活动，否则跳转到登陆活动
                 LoginActivity.actionActivity(mainActivity);
                 break;
+            case R.id.bt_logout:
+                break;
             case R.id.bt_comment:
                 getMyComment();
                 break;
