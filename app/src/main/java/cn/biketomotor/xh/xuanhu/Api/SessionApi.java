@@ -1,12 +1,5 @@
 package cn.biketomotor.xh.xuanhu.Api;
 
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Date;
 
 import okhttp3.HttpUrl;
@@ -24,6 +17,7 @@ public enum SessionApi {
     INSTANCE;
 
     private static final String LOGIN_PATH = "/api/login";
+    private static final String LOGOUT_PATH = "/api/logout";
 
     static class LoginForm {
         String email;
@@ -52,5 +46,18 @@ public enum SessionApi {
         GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, path);
         LoginForm form = new LoginForm(email, password);
         return client.post(form);
+    }
+
+    static class LogoutForm {
+    }
+
+    public static class LogoutResult {
+        public boolean success = true;
+    }
+
+    public Result<LogoutResult> logout() {
+        GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, LOGOUT_PATH);
+        LogoutForm form = new LogoutForm();
+        return client.process(form);
     }
 }
