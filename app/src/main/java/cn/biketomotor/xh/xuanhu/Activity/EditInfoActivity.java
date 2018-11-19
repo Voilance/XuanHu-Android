@@ -36,17 +36,17 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initView() {
-        setContentView(R.layout.test_activity_edit_info);
+        setContentView(R.layout.activity_edit_info);
 
-        btAvatar = findViewById(R.id.bt_avatar);
-        ivAvatar = findViewById(R.id.iv_avatar);
-        etName = findViewById(R.id.et_name);
-        etPassword = findViewById(R.id.et_password);
-        etNewPassword = findViewById(R.id.et_new_password);
-        etInfo = findViewById(R.id.et_info);
-        btSubmit = findViewById(R.id.bt_submit);
-        btAvatar.setOnClickListener(this);
-        btSubmit.setOnClickListener(this);
+//        btAvatar = findViewById(R.id.bt_avatar);
+//        ivAvatar = findViewById(R.id.iv_avatar);
+//        etName = findViewById(R.id.et_name);
+//        etPassword = findViewById(R.id.et_password);
+//        etNewPassword = findViewById(R.id.et_new_password);
+//        etInfo = findViewById(R.id.et_info);
+//        btSubmit = findViewById(R.id.bt_submit);
+//        btAvatar.setOnClickListener(this);
+//        btSubmit.setOnClickListener(this);
     }
 
     @Override

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/normal_margin"
+            android:background="@color/white"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/normal_margin"
+                    android:background="@drawable/round_background"
+                    android:elevation="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/default_avatar"
+                    app:riv_oval="true" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/stxinwei"
+                android:text="@string/placeholder_user_name"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/vertical_space_divider_bigger"
+        android:orientation="vertical"
+        android:showDividers="middle">
+        <!-- user info -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/normal_shadow">
+            <LinearLayout
+                android:id="@+id/user_info_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/normal_padding_plus">
+                <!-- icon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/user_home_items"
+                    android:text="@string/info_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/item_icon_size" />
+
+                <Space
+                    android:layout_width="@dimen/normal_spacing"
+                    android:layout_height="0dp" />
+                <!-- label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="我的个人资料"
+                    android:textSize="@dimen/list_item_text_size" />
+                <!-- arrow -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arrow"
+                    android:text="@string/arrow_r_icon"
+                    android:textSize="@dimen/arrow_icon_size" />
+            </LinearLayout>
+        </FrameLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:background="@color/white"
+            android:id="@+id/user_comment_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TabItem
+                android:id="@+id/comment_tab"
+                android:text="我的评论"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.design.widget.TabItem
+                android:id="@+id/like_tab"
+                android:text="我的赞同"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.design.widget.TabItem
+                android:id="@+id/unlike_tab"
+                android:text="我的反对"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/user_comment_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+
+
+         <!--&lt;!&ndash;user comment &ndash;&gt;-->
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--android:elevation="@dimen/normal_shadow">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/user_comment_ll"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="@dimen/normal_padding_plus">-->
+                <!--&lt;!&ndash; icon &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/user_home_items"-->
+                    <!--android:text="@string/comment_icon"-->
+                    <!--android:textColor="@color/steelblue"-->
+                    <!--android:textSize="@dimen/item_icon_size" />-->
+
+                <!--<Space-->
+                    <!--android:layout_width="@dimen/normal_spacing"-->
+                    <!--android:layout_height="0dp" />-->
+                <!--&lt;!&ndash; label &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="我的评论"-->
+                    <!--android:textSize="@dimen/list_item_text_size" />-->
+                <!--&lt;!&ndash; arrow &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/arrow"-->
+                    <!--android:text="@string/arrow_r_icon"-->
+                    <!--android:textSize="@dimen/arrow_icon_size" />-->
+            <!--</LinearLayout>-->
+        <!--</FrameLayout>-->
+
+
+        <!--&lt;!&ndash; user like &ndash;&gt;-->
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--android:elevation="@dimen/normal_shadow">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/user_like_ll"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="@dimen/normal_padding_plus">-->
+                <!--&lt;!&ndash; icon &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/user_home_items"-->
+                    <!--android:text="@string/like_icon"-->
+                    <!--android:textColor="@color/steelblue"-->
+                    <!--android:textSize="@dimen/item_icon_size" />-->
+
+                <!--<Space-->
+                    <!--android:layout_width="@dimen/normal_spacing"-->
+                    <!--android:layout_height="0dp" />-->
+                <!--&lt;!&ndash; label &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="我的赞同"-->
+                    <!--android:textSize="@dimen/list_item_text_size" />-->
+                <!--&lt;!&ndash; arrow &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/arrow"-->
+                    <!--android:text="@string/arrow_r_icon"-->
+                    <!--android:textSize="@dimen/arrow_icon_size" />-->
+            <!--</LinearLayout>-->
+        <!--</FrameLayout>-->
+
+        <!--&lt;!&ndash; user unlike &ndash;&gt;-->
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--android:elevation="@dimen/normal_shadow">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/user_unlike_ll"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:clickable="true"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="@dimen/normal_padding_plus">-->
+                <!--&lt;!&ndash; icon &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/user_home_items"-->
+                    <!--android:text="@string/unlike_icon"-->
+                    <!--android:textColor="@color/steelblue"-->
+                    <!--android:textSize="@dimen/item_icon_size" />-->
+
+                <!--<Space-->
+                    <!--android:layout_width="@dimen/normal_spacing"-->
+                    <!--android:layout_height="0dp" />-->
+                <!--&lt;!&ndash; label &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="我的反对"-->
+                    <!--android:textSize="@dimen/list_item_text_size" />-->
+                <!--&lt;!&ndash; arrow &ndash;&gt;-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/arrow"-->
+                    <!--android:text="@string/arrow_r_icon"-->
+                    <!--android:textSize="@dimen/arrow_icon_size" />-->
+            <!--</LinearLayout>-->
+        <!--</FrameLayout>-->
+    </LinearLayout>
+
+</LinearLayout>
