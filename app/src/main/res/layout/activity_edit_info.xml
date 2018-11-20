@@ -1,317 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
+    android:layout_height="match_parent">
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        android:divider="@drawable/vertical_space_divider_bigger"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:fillViewport="true">
 
-
-
-
-        <!-- avatar -->
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            android:elevation="10dp">
-            <LinearLayout
-                android:id="@+id/info_avatar_item"
-                android:elevation="10dp"
+            android:divider="@drawable/vertical_space_divider_bigger"
+            android:orientation="vertical"
+            android:showDividers="middle">
+            <!-- avatar -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:showDividers="middle"
-                android:divider="@drawable/horizontal_space_divider"
-                android:padding="@dimen/normal_padding_plus">
-                <!-- avatar icon -->
-                <TextView
-                    android:textColor="@color/steelblue"
-                    android:fontFamily="@font/info_items"
-                    android:text="@string/avatar_icon"
-                    android:textSize="@dimen/item_icon_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <!-- avatar label -->
-                <TextView
-                    android:text="头像"
-                    android:textSize="@dimen/user_info_item_label_size"
-                    android:layout_width="@dimen/info_list_item_text_width"
-                    android:layout_height="wrap_content" />
-                <!-- avatar value -->
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:layout_gravity="center"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/default_avatar"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/round_background_with_border"
-                        app:riv_oval="true" />
-                </FrameLayout>
-                <!-- arrow -->
-                <TextView
-                    android:fontFamily="@font/arrow"
-                    android:text="@string/arrow_r_icon"
-                    android:textSize="@dimen/arrow_icon_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/normal_padding"/>
-            </LinearLayout>
-        </FrameLayout>
+                android:background="@color/white"
+                android:elevation="10dp">
 
-
-
-
-        <!-- email -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:showDividers="middle"
-                android:divider="@drawable/horizontal_space_divider"
-                android:padding="@dimen/normal_padding_plus">
-                <!-- email icon -->
-                <TextView
-                    android:textColor="@color/steelblue"
-                    android:fontFamily="@font/info_items"
-                    android:text="@string/email_icon"
-                    android:textSize="@dimen/item_icon_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"/>
-                <!-- email label -->
-                <TextView
-                    android:text="邮箱"
-                    android:textSize="@dimen/user_info_item_label_size"
-                    android:layout_width="@dimen/info_list_item_text_width"
-                    android:layout_height="wrap_content" />
-                <!-- email value -->
-                <TextView
-                    android:fontFamily="@font/stxinwei"
-                    android:text="@string/placeholder_user_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/user_info_item_value_size"/>
-            </LinearLayout>
-        </FrameLayout>
-
-
-        <!-- username -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:showDividers="middle"
-                android:divider="@drawable/horizontal_space_divider"
-                android:paddingLeft="@dimen/normal_padding_plus"
-                android:paddingRight="@dimen/normal_padding_plus"
-                android:paddingTop="@dimen/normal_padding_minus"
-                android:paddingBottom="@dimen/normal_padding_minus">
-                <!-- username icon -->
-                <TextView
-                    android:textColor="@color/steelblue"
-                    android:fontFamily="@font/info_items"
-                    android:text="@string/name_icon"
-                    android:textSize="@dimen/item_icon_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"/>
-                <!-- username label -->
-                <TextView
-                    android:text="用户名"
-                    android:textSize="@dimen/user_info_item_label_size"
-                    android:layout_width="@dimen/info_list_item_text_width"
-                    android:layout_height="wrap_content" />
-                <!-- username value -->
-                <android.support.design.widget.TextInputEditText
-                    android:fontFamily="@font/stxinwei"
-                    android:text="@string/placeholder_user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/user_info_item_value_size"/>
-            </LinearLayout>
-        </FrameLayout>
-
-
-        <!-- old psw -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:showDividers="middle"
-                android:divider="@drawable/horizontal_space_divider"
-                android:paddingLeft="@dimen/normal_padding_plus"
-                android:paddingRight="@dimen/normal_padding_plus"
-                android:paddingTop="@dimen/normal_padding_minus"
-                android:paddingBottom="@dimen/normal_padding_minus">
-                <!-- icon -->
-                <TextView
-                    android:textColor="@color/steelblue"
-                    android:fontFamily="@font/info_items"
-                    android:text="@string/name_icon"
-                    android:textSize="@dimen/item_icon_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"/>
-                <!-- label -->
-                <TextView
-                    android:text="用户名"
-                    android:textSize="@dimen/user_info_item_label_size"
-                    android:layout_width="@dimen/info_list_item_text_width"
-                    android:layout_height="wrap_content" />
-                <!-- value -->
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/old_psw_input_layout"
+                <LinearLayout
+                    android:id="@+id/bt_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true">
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/old_psw_input"
-                        android:layout_width="match_parent"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:divider="@drawable/horizontal_space_divider"
+                    android:elevation="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/normal_padding_plus"
+                    android:showDividers="middle">
+                    <!-- avatar icon -->
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:textSize="20dp"/>
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-        </FrameLayout>
+                        android:fontFamily="@font/info_items"
+                        android:text="@string/avatar_icon"
+                        android:textColor="@color/steelblue"
+                        android:textSize="@dimen/item_icon_size" />
+                    <!-- avatar label -->
+                    <TextView
+                        android:layout_width="@dimen/info_list_item_text_width"
+                        android:layout_height="wrap_content"
+                        android:text="头像"
+                        android:textSize="@dimen/user_info_item_label_size" />
+                    <!-- avatar value -->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/iv_avatar"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/round_background_with_border"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/default_avatar"
+                            app:riv_oval="true" />
+                    </FrameLayout>
+                    <!-- arrow -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/arrow"
+                        android:padding="@dimen/normal_padding"
+                        android:text="@string/arrow_r_icon"
+                        android:textSize="@dimen/arrow_icon_size" />
+                </LinearLayout>
+            </FrameLayout>
 
 
-        <!-- new psw -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="10dp">
-            <LinearLayout
+            <!-- email -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:showDividers="middle"
-                android:divider="@drawable/horizontal_space_divider"
-                android:paddingLeft="@dimen/normal_padding_plus"
-                android:paddingRight="@dimen/normal_padding_plus"
-                android:paddingTop="@dimen/normal_padding_minus"
-                android:paddingBottom="@dimen/normal_padding_minus">
-                <!-- icon -->
-                <TextView
-                    android:textColor="@color/steelblue"
-                    android:fontFamily="@font/info_items"
-                    android:text="@string/name_icon"
-                    android:textSize="@dimen/item_icon_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"/>
-                <!-- label -->
-                <TextView
-                    android:text="用户名"
-                    android:textSize="@dimen/user_info_item_label_size"
-                    android:layout_width="@dimen/info_list_item_text_width"
-                    android:layout_height="wrap_content" />
-                <!-- value -->
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/new_psw_input_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true">
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/new_psw_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:textSize="20dp"/>
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-        </FrameLayout>
+                android:background="@color/white"
+                android:elevation="10dp">
 
-
-        <!-- user introduction -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:gravity="center"
-                android:background="?android:attr/selectableItemBackground"
-                android:showDividers="middle"
-                android:divider="@drawable/horizontal_space_divider"
-                android:padding="@dimen/normal_padding_plus">
-                <!-- user introduction icon -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:divider="@drawable/horizontal_space_divider"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/normal_padding_plus"
+                    android:showDividers="middle">
+                    <!-- email icon -->
                     <TextView
-                        android:textColor="@color/steelblue"
-                        android:fontFamily="@font/info_items"
-                        android:text="@string/introduction_icon"
-                        android:textSize="@dimen/item_icon_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"/>
-                    <!-- user introduction label -->
+                        android:fontFamily="@font/info_items"
+                        android:paddingTop="5dp"
+                        android:text="@string/email_icon"
+                        android:textColor="@color/steelblue"
+                        android:textSize="@dimen/item_icon_size" />
+                    <!-- email label -->
                     <TextView
-                        android:text="个人简介"
-                        android:textSize="@dimen/user_info_item_label_size"
+                        android:layout_width="@dimen/info_list_item_text_width"
+                        android:layout_height="wrap_content"
+                        android:text="邮箱"
+                        android:textSize="@dimen/user_info_item_label_size" />
+                    <!-- email value -->
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/stxinwei"
+                        android:text="@string/placeholder_user_email"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/user_info_item_value_size" />
                 </LinearLayout>
-                <android.support.design.widget.TextInputEditText
+            </FrameLayout>
+
+
+            <!-- username -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="10dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/stxinwei"
-                    android:textSize="@dimen/comment_content_size"/>
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
-</ScrollView>
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:divider="@drawable/horizontal_space_divider"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/normal_padding_plus"
+                    android:paddingTop="@dimen/normal_padding_minus"
+                    android:paddingRight="@dimen/normal_padding_plus"
+                    android:paddingBottom="@dimen/normal_padding_minus"
+                    android:showDividers="middle">
+                    <!-- username icon -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/info_items"
+                        android:paddingTop="5dp"
+                        android:text="@string/name_icon"
+                        android:textColor="@color/steelblue"
+                        android:textSize="@dimen/item_icon_size" />
+                    <!-- username label -->
+                    <TextView
+                        android:layout_width="@dimen/info_list_item_text_width"
+                        android:layout_height="wrap_content"
+                        android:text="用户名"
+                        android:textSize="@dimen/user_info_item_label_size" />
+                    <!-- username value -->
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/stxinwei"
+                        android:text="@string/placeholder_user_name"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/user_info_item_value_size" />
+                </LinearLayout>
+            </FrameLayout>
+
+
+            <!-- old psw -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:divider="@drawable/horizontal_space_divider"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/normal_padding_plus"
+                    android:paddingTop="@dimen/normal_padding_minus"
+                    android:paddingRight="@dimen/normal_padding_plus"
+                    android:paddingBottom="@dimen/normal_padding_minus"
+                    android:showDividers="middle">
+                    <!-- icon -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/reset_psw"
+                        android:paddingTop="5dp"
+                        android:text="@string/reset_psw_icon"
+                        android:textColor="@color/steelblue"
+                        android:textSize="@dimen/item_icon_size" />
+                    <!-- label -->
+                    <TextView
+                        android:layout_width="@dimen/info_list_item_text_width"
+                        android:layout_height="wrap_content"
+                        android:text="原密码"
+                        android:textSize="@dimen/user_info_item_label_size" />
+                    <!-- value -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/old_psw_input_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textSize="20dp" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+
+            <!-- new psw -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:divider="@drawable/horizontal_space_divider"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/normal_padding_plus"
+                    android:paddingTop="@dimen/normal_padding_minus"
+                    android:paddingRight="@dimen/normal_padding_plus"
+                    android:paddingBottom="@dimen/normal_padding_minus"
+                    android:showDividers="middle">
+                    <!-- icon -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/reset_psw"
+                        android:paddingTop="5dp"
+                        android:text="@string/reset_psw_icon"
+                        android:textColor="@color/steelblue"
+                        android:textSize="@dimen/item_icon_size" />
+                    <!-- label -->
+                    <TextView
+                        android:layout_width="@dimen/info_list_item_text_width"
+                        android:layout_height="wrap_content"
+                        android:text="新密码"
+                        android:textSize="@dimen/user_info_item_label_size" />
+                    <!-- value -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/new_psw_input_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_new_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textSize="20dp" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+
+            <!-- user introduction -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:divider="@drawable/horizontal_space_divider"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/normal_padding_plus"
+                    android:showDividers="middle">
+                    <!-- user introduction icon -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/info_items"
+                            android:paddingTop="5dp"
+                            android:text="@string/introduction_icon"
+                            android:textColor="@color/steelblue"
+                            android:textSize="@dimen/item_icon_size" />
+                        <!-- user introduction label -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个人简介"
+                            android:textSize="@dimen/user_info_item_label_size" />
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/et_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/stxinwei"
+                        android:textSize="@dimen/comment_content_size" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/bt_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:borderWidth="0dp"
+            android:elevation="0dp"
+            android:clickable="true"
+            android:layout_margin="@dimen/normal_margin_plus_plus" />
+        <TextView
+            android:fontFamily="@font/submit"
+            android:text="@string/submit_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="20dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fab_font_icon_size"
+            />
+    </FrameLayout>
+</RelativeLayout>

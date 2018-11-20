@@ -4,23 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import cn.biketomotor.xh.xuanhu.R;
 
 public class EditInfoActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "TagEditInfo";
 
-    private Button btAvatar;
+    private LinearLayout btAvatar;
     private ImageView ivAvatar;
     private EditText etName;
     private EditText etPassword;
     private EditText etNewPassword;
     private EditText etInfo;
-    private Button btSubmit;
+    private View btSubmit;
 
     private String avatar;
     private String name;
@@ -38,15 +40,15 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     private void initView() {
         setContentView(R.layout.activity_edit_info);
 
-//        btAvatar = findViewById(R.id.bt_avatar);
-//        ivAvatar = findViewById(R.id.iv_avatar);
-//        etName = findViewById(R.id.et_name);
-//        etPassword = findViewById(R.id.et_password);
-//        etNewPassword = findViewById(R.id.et_new_password);
-//        etInfo = findViewById(R.id.et_info);
-//        btSubmit = findViewById(R.id.bt_submit);
-//        btAvatar.setOnClickListener(this);
-//        btSubmit.setOnClickListener(this);
+        btAvatar = findViewById(R.id.bt_avatar);
+        ivAvatar = findViewById(R.id.iv_avatar);
+        etName = findViewById(R.id.et_name);
+        etPassword = findViewById(R.id.et_password);
+        etNewPassword = findViewById(R.id.et_new_password);
+        etInfo = findViewById(R.id.et_info);
+        btSubmit = findViewById(R.id.bt_submit);
+        btAvatar.setOnClickListener(this);
+        btSubmit.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +58,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.bt_submit: // 提交修改
                 if (isInfoValid()) {
+                    Log.i("xh_info", "submit");
                     onEditInfo();
                 }
                 break;

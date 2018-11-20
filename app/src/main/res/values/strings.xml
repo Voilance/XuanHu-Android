@@ -18,6 +18,8 @@
     <string name="introduction_icon">\ue61a</string>
     <string name="avatar_icon">\ue60d</string>
     <string name="name_icon">\ue625</string>
+    <string name="submit_icon">\ue747</string>
+    <string name="reset_psw_icon">\ue718</string>
 
     <string name="info_str">个人资料</string>
     <string name="comment_str">评论</string>

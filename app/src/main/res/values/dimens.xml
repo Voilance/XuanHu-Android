@@ -13,6 +13,8 @@
     <dimen name="comment_item_margin">8dp</dimen>
     <dimen name="comment_item_padding">8dp</dimen>
     <dimen name="normal_spacing">10dp</dimen>
+    <dimen name="normal_margin_plus_plus">20dp</dimen>
+    <dimen name="normal_margin_plus">15dp</dimen>
     <dimen name="normal_margin">10dp</dimen>
     <dimen name="normal_margin_minus">5dp</dimen>
     <dimen name="normal_padding">10dp</dimen>
@@ -20,6 +22,7 @@
     <dimen name="normal_padding_minus">5dp</dimen>
     <dimen name="scrollbar_size">7dp</dimen>
     <dimen name="normal_shadow">5dp</dimen>
+    <dimen name="fab_font_icon_size">30dp</dimen>
 
     <!-- for user info -->
     <dimen name="user_info_item_icon_size">20dp</dimen>
