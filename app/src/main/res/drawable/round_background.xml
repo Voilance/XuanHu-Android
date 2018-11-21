@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval" >
-
     <solid android:color="@color/white" />
-    <!--<stroke android:color="@android:color/darker_gray"-->
-        <!--android:width="1dp"/>-->
-
 </shape>
-
-
-<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
-
-    <!--&lt;!&ndash; Bottom 2dp Shadow &ndash;&gt;-->
-    <!--<item>-->
-        <!--<shape  android:shape="oval">-->
-
-            <!--<solid android:color="#d8d8d8" />-->
-            <!--&lt;!&ndash;<corners android:radius="7dp" />&ndash;&gt;-->
-
-        <!--</shape>-->
-    <!--</item>-->
-
-    <!--&lt;!&ndash; White Top color &ndash;&gt;-->
-    <!--<item android:bottom="3px" android:right="3dp">-->
-
-        <!--<shape  android:shape="oval">-->
-
-            <!--<solid android:color="#FFFFFF" />-->
-            <!--&lt;!&ndash;<corners android:radius="7dp" />&ndash;&gt;-->
-
-
-        <!--</shape>-->
-
-    <!--</item>-->
-
-<!--</layer-list>-->
