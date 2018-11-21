@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_course_detail"
+            android:background="@color/white"
+            android:elevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TabItem
+                android:text="课程详情"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.design.widget.TabItem
+                android:text="评论"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_course_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+    <cn.biketomotor.xh.xuanhu.CustomUIElement.MoveableFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/bt_new_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:borderWidth="0dp"
+            android:elevation="0dp"
+            android:layout_margin="@dimen/normal_margin_plus_plus" />
+        <TextView
+            android:fontFamily="@font/course_icons"
+            android:text="@string/course_add_comment_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="20dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:clickable="false"
+            android:textSize="@dimen/fab_font_icon_size"
+            />
+    </cn.biketomotor.xh.xuanhu.CustomUIElement.MoveableFrameLayout>
+</RelativeLayout>

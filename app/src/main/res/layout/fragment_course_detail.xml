@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/course_detail_big_space"
+        android:orientation="vertical"
+        android:padding="@dimen/normal_padding"
+        android:showDividers="middle"
+        tools:context=".CourseDetailActivity">
+
+        <!-- basic info -->
+        <LinearLayout
+            android:id="@+id/course_basic_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/vertical_space_divider"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle">
+            <!-- title -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!-- title icon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/course_icons"
+                    android:text="@string/course_title_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_info_title_icon_size" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="0dp" />
+                <!-- title value -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_course_title"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_info_title_size" />
+            </LinearLayout>
+
+
+            <!-- teacher -->
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="@string/course_teacher_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_info_item_icon_size"
+                    android:fontFamily="@font/course_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:text="授课教师:"
+                    android:textSize="@dimen/course_info_item_label_size"
+                    android:textColor="@color/steelblue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:text="@string/placeholder_course_teacher"
+                    android:fontFamily="@font/stxinwei"
+                    android:textSize="@dimen/course_info_item_value_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+
+            <!-- school -->
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="@string/course_school_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_info_item_icon_size"
+                    android:fontFamily="@font/course_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:text="开课学院:"
+                    android:textSize="@dimen/course_info_item_label_size"
+                    android:textColor="@color/steelblue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:text="@string/placeholder_course_school"
+                    android:fontFamily="@font/stxinwei"
+                    android:textSize="@dimen/course_info_item_value_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <!-- type -->
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="@string/course_type_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_info_item_icon_size"
+                    android:fontFamily="@font/course_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:text="课程类型:"
+                    android:textSize="@dimen/course_info_item_label_size"
+                    android:textColor="@color/steelblue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:text="@string/placeholder_course_type"
+                    android:fontFamily="@font/stxinwei"
+                    android:textSize="@dimen/course_info_item_value_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <!-- course introduction -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <!-- introduction title -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!-- introduction icon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/course_icons"
+                    android:text="@string/course_introduction_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_introduction_icon_size" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="0dp" />
+                <!-- introduction label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="课程简介"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/course_introduction_label_size" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+
+            <!-- introduction content -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/stxinwei"
+                android:text="@string/placeholder_course_introduction"
+                android:textSize="@dimen/course_introduction_content_size" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

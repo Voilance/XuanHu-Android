@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -329,18 +330,18 @@
             </FrameLayout>
         </LinearLayout>
     </ScrollView>
-    <FrameLayout
+    <cn.biketomotor.xh.xuanhu.CustomUIElement.MoveableFrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:clickable="true">
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/bt_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:borderWidth="0dp"
             android:elevation="0dp"
-            android:clickable="true"
             android:layout_margin="@dimen/normal_margin_plus_plus" />
         <TextView
             android:fontFamily="@font/submit"
@@ -350,7 +351,8 @@
             android:elevation="20dp"
             android:layout_gravity="center"
             android:textColor="@color/white"
+            android:clickable="false"
             android:textSize="@dimen/fab_font_icon_size"
             />
-    </FrameLayout>
+    </cn.biketomotor.xh.xuanhu.CustomUIElement.MoveableFrameLayout>
 </RelativeLayout>

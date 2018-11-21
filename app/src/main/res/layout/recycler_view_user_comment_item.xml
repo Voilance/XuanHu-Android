@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/normal_margin_minus"
-    android:background="@color/comment_item_bg"
+    android:background="@drawable/comment_item_background"
     android:elevation="5dp"
     android:clickable="true">
 
@@ -14,9 +14,7 @@
         android:id="@+id/comment_item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:padding="@dimen/comment_item_padding"
-        android:clickable="true"
         android:orientation="vertical"
         android:showDividers="middle"
         android:divider="@drawable/vertical_space_divider">

@@ -18,6 +18,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.biketomotor.xh.xuanhu.Activity.CourseDetail;
+import cn.biketomotor.xh.xuanhu.Activity.MainActivity;
 import cn.biketomotor.xh.xuanhu.Adapter.HistoryCommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
@@ -26,13 +28,15 @@ public class UserCommentFragment extends Fragment {
     public static final int COMMENT = 0;
     public static final int LIKE = 1;
     public static final int UNLIKE = 2;
-    View view = null;
-    RecyclerView recyclerView = null;
-    List<CommentItem> userComments = new ArrayList<>();
-    HistoryCommentItemAdapter historyCommentItemAdapter = new HistoryCommentItemAdapter(userComments);
+    private View view = null;
+    private RecyclerView recyclerView = null;
+    private List<CommentItem> userComments = new ArrayList<>();
+    private HistoryCommentItemAdapter historyCommentItemAdapter = new HistoryCommentItemAdapter(userComments);
+    private MainActivity mainActivity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user_comment, container, false);
+        mainActivity = (MainActivity)getActivity();
         recyclerView = view.findViewById(R.id.user_comment_recycler_view);
         recyclerView.setAdapter(historyCommentItemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -40,6 +44,7 @@ public class UserCommentFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
 //                Toast.makeText(mainActivity, commentList.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
+                CourseDetail.actionActivity(mainActivity);
             }
         });
         Bundle bundle = this.getArguments();
