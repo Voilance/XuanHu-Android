@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_icon_size">30dp</dimen>
+    <dimen name="list_item_padding_top">12dp</dimen>
+    <dimen name="list_item_padding_bottom">12dp</dimen>
+    <dimen name="list_item_padding_left">10dp</dimen>
+    <dimen name="list_item_padding_right">10dp</dimen>
+    <dimen name="list_item_text_size">20dp</dimen>
+    <dimen name="list_item_text_left_margin">10dp</dimen>
+    <dimen name="info_list_item_text_width">70dp</dimen>
+    <dimen name="arrow_icon_size">20dp</dimen>
+    <dimen name="thumb_padding">10dp</dimen>
+    <dimen name="comment_item_margin">8dp</dimen>
+    <dimen name="comment_item_padding">8dp</dimen>
+    <dimen name="normal_spacing">10dp</dimen>
+    <dimen name="normal_margin_plus_plus">20dp</dimen>
+    <dimen name="normal_margin_plus">15dp</dimen>
+    <dimen name="normal_margin">10dp</dimen>
+    <dimen name="normal_margin_minus">5dp</dimen>
+    <dimen name="normal_padding">10dp</dimen>
+    <dimen name="normal_padding_plus">13dp</dimen>
+    <dimen name="normal_padding_minus">5dp</dimen>
+    <dimen name="scrollbar_size">7dp</dimen>
+    <dimen name="normal_shadow">5dp</dimen>
+    <dimen name="fab_font_icon_size">30dp</dimen>
+
+    <!-- for user info -->
+    <dimen name="user_info_item_icon_size">20dp</dimen>
+    <dimen name="user_info_item_label_size">20dp</dimen>
+    <dimen name="user_info_item_value_size">20dp</dimen>
+
+    <!-- for comment item -->
+    <dimen name="comment_thumb_size">20dp</dimen>
+    <dimen name="comment_course_title_size">20dp</dimen>
+    <dimen name="comment_user_size">13dp</dimen>
+    <dimen name="comment_date_size">10dp</dimen>
+    <dimen name="comment_content_size">18dp</dimen>
+    <dimen name="comment_user_size_bigger">20dp</dimen>
+    <dimen name="comment_date_size_bigger">15dp</dimen>
+
+    <!-- for course -->
+    <dimen name="course_info_title_size">25dp</dimen>
+    <dimen name="course_info_title_icon_size">25dp</dimen>
+    <dimen name="course_info_item_label_size">20dp</dimen>
+    <dimen name="course_info_item_value_size">20dp</dimen>
+    <dimen name="course_info_item_icon_size">20dp</dimen>
+
+    <dimen name="course_introduction_icon_size">25dp</dimen>
+    <dimen name="course_introduction_label_size">25dp</dimen>
+    <dimen name="course_introduction_content_size">18dp</dimen>
+
+    <dimen name="course_comments_icon_size">30dp</dimen>
+    <!-- for action bar -->
+    <dimen name="action_bar_text_size">20dp</dimen>
+
+
+</resources>

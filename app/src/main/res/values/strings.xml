@@ -1,3 +1,82 @@
 <resources>
-    <string name="app_name">XuanHu</string>
+    <string name="app_name">选乎</string>
+    <string name="like_icon">\ue7c8</string>
+    <string name="unlike_icon">\ue7c9</string>
+    <string name="info_icon">\ue77e</string>
+    <string name="comment_icon">\ue8e8</string>
+    <string name="edit_psw_icon">\ue61c</string>
+
+    <string name="arrow_r_icon">\ue7eb</string>
+    <string name="arrow_l_icon">\ue7ec</string>
+    <string name="arrow_u_icon">\ue7ed</string>
+    <string name="arrow_d_icon">\ue7ee</string>
+
+    <string name="eye_open_icon">\ue8cd</string>
+    <string name="eye_close_icon">\ue604</string>
+
+    <string name="email_icon">\ue601</string>
+    <string name="introduction_icon">\ue61a</string>
+    <string name="avatar_icon">\ue60d</string>
+    <string name="name_icon">\ue625</string>
+    <string name="submit_icon">\ue747</string>
+    <string name="reset_psw_icon">\ue718</string>
+
+    <string name="info_str">个人资料</string>
+    <string name="comment_str">评论</string>
+    <string name="like_str">赞同</string>
+    <string name="unlike_str">反对</string>
+    <string name="edit_psw_str">修改密码</string>
+    <string name="old_psw_str">原密码</string>
+    <string name="new_psw_str">新密码</string>
+
+    <string name="cancel_edit_str">取消</string>
+    <string name="confirm_edit_str">确认</string>
+
+    <string name="avatar_str">头像</string>
+    <string name="username_str">用户名</string>
+    <string name="user_email_str">邮箱</string>
+    <string name="user_introduction_str">个人简介</string>
+    <string name="edit_user_info_str">修改个人资料</string>
+
+    <!-- course detail icon -->
+    <string name="course_title_icon">\ue615</string>
+    <string name="course_teacher_icon">\ue647</string>
+    <string name="course_school_icon">\ueced</string>
+    <string name="course_type_icon">\ue616</string>
+    <string name="course_comment_icon">\ue8e8</string>
+    <string name="course_add_comment_icon">\ue779</string>
+    <string name="course_introduction_icon">\ue6c4</string>
+    <string name="course_comment_reply_icon">\ue637</string>
+
+    <!--placeholder string-->
+    <string name="placeholder_comment_content">
+        黄有东老师上课真的非常非常非常有激情，思路非常非常非常清晰，
+        对于古代各个阶段的文学发展都有自己读到的见解，而且教学形式多样，
+        会让同学们写诗、自由演讲等，总能激发同学们的上课兴趣。
+        而且令人惊艳的是，慕课上黄老师的视频非常赞，派出了百家讲坛、访谈大学者的感觉，
+        对于本人这种对文学较有兴趣的人来说这学期课学下来不仅不亏，
+        而且非常赚。期末考核也很简单。
+        The teacher is nice, and the course is awesome.
+        The students are active. I am very satisfied.
+    </string>
+    <string name="placeholder_comment_date">2018-11-17 20:10:32</string>
+    <string name="placeholder_course_title">中国文学与文化</string>
+    <string name="placeholder_comment_user">佚名</string>
+    <string name="placeholder_course_school">新闻与传播学院</string>
+    <string name="placeholder_course_type">人文科学核心</string>
+    <string name="placeholder_course_teacher">黄有东</string>
+    <string name="placeholder_course_introduction">
+        本课程以诗歌、小说、戏剧、散文为重点，对中国的古代文学发展脉络及其特征进行介绍，
+        重点选取诗经、楚辞、哲理散文、唐诗、宋词、元曲、明清小说、自由诗、话剧、现代小说、朦胧诗、当代小说，
+        对中国文学史上重要的流派、作家及经典作品进行深入介绍，借助“知人论世”与“以意逆志”的解释路径，
+        试图进行深层次的文化解读。力图在学生以往学习的基础上，展现另一方美景，
+        从而丰富学生的艺术修养，提高其审美趣味与文化素质。
+    </string>
+
+    <string name="placeholder_user_email">359749340@qq.com</string>
+    <string name="placeholder_user_name">username</string>
+
+
+    <!-- tab title -->
+    <string name="tab_comment_title">\ue8e8评论</string>
 </resources>
