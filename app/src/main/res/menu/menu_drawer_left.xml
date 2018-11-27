@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/myhomepage"
+        android:icon="@drawable/homepage"
+        android:title="个人主页" />
+    <item
+        android:id="@+id/mylike"
+        android:icon="@drawable/like"
+        android:title="我的点赞" />
+    <item
+        android:id="@+id/mydislike"
+        android:icon="@drawable/dislike"
+        android:title="我的踩"/>
+    <item
+        android:id="@+id/mycomment"
+        android:icon="@drawable/comment_1"
+        android:title="我的评论" />
+    </group>
+    <item android:title="">
+    <menu>
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/settings"
+            android:title="设置" />
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/home"
+            android:title="首页" />
+    </menu>
+    </item>
+
+
+</menu>
+
