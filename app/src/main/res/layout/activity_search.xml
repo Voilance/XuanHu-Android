@@ -8,7 +8,7 @@
     android:background="@drawable/white"
    >
 
-    <com.sourcey.xuanhu.SearchView
+    <cn.biketomotor.xh.xuanhu.Activity.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
