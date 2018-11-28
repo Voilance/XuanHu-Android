@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.link_gohome)
     TextView _gohomeLink;
     String result = "";
-    @BindView(R.id.toolbar) Toolbar _toolbar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        mDrawerLayout =  findViewById(R.id.drawer_layout);
+
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -64,34 +64,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                Intent intent1 = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivityForResult(intent1, REQUEST_SIGNUP);
             }
         });
-
-
-         _toolbar.setNavigationIcon(R.drawable.menu);//设置导航栏图标
-        setSupportActionBar(_toolbar);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, _toolbar, R.string.openString, R.string.closeString) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-        };
-        mDrawerToggle.syncState();  //Synchronize the state of the drawer indicator/affordance with the linked DrawerLayout
-        mDrawerLayout.addDrawerListener(mDrawerToggle);     //监听DrawerLayout
-
 
         _gohomeLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the Homepage activity
-                Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
-                startActivityForResult(intent, REQUEST_GOHOME);
+                Intent intent2 = new Intent(LoginActivity.this,HomepageActivity.class);
+                startActivity(intent2);
+
 
             }
         });
@@ -121,47 +105,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.myhomepage) {
-            // Handle the camera action
-        } else if (id == R.id.mylike) {
-
-        } else if (id == R.id.mylike) {
-
-        } else if (id == R.id.mycomment) {
-
-        } else if (id == R.id.settings) {
-
-        } else if (id == R.id.home) {
-
-        }
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
 
     @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
-       // moveTaskToBack(true);
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
+          //   moveTaskToBack(true);
             super.onBackPressed();
-        }
+
 
     }
 
     public void onLoginSuccess() {
 
         Toast.makeText(getBaseContext(), "登录成功", Toast.LENGTH_LONG).show();
-        _loginButton.setEnabled(true);
-        Intent intent = new Intent(LoginActivity.this,HomepageActivity.class);
-        startActivity(intent);
-
+        Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+        startActivityForResult(intent, REQUEST_GOHOME);
         finish();
     }
 
@@ -191,10 +150,6 @@ public class LoginActivity extends AppCompatActivity {
                                    // Start the Homepage activity
         if(email_input.equals(email) && password_input.equals(password)) {
 
-
-            new android.os.Handler().postDelayed(
-                    new Runnable() {
-                        public void run() {
                            
                             _loginButton.setEnabled(true);
                             //进入首页
@@ -202,17 +157,11 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
 
-                                		Toast.makeText(getBaseContext(), "登录成功", Toast.LENGTH_LONG).show();
-	                                    Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
-	                                    startActivityForResult(intent, REQUEST_GOHOME);
-	                                    finish();
-	                                    //  onLoginSuccess();
+	                                    onLoginSuccess();
 
                                 }
                             });
-                        }
 
-                    }, 2000);
                 }
                 else{
                         Toast.makeText(getBaseContext(), "登录失败", Toast.LENGTH_LONG).show();
@@ -220,9 +169,6 @@ public class LoginActivity extends AppCompatActivity {
       			}
 
        }
-      
-
-
 
     public boolean validate() {
 
@@ -249,28 +195,10 @@ public class LoginActivity extends AppCompatActivity {
             _passwordText.setError(null);
         }
 
-
-        SharedPreferences settings2 = getSharedPreferences("settings2", 0);
-        SharedPreferences.Editor editor = settings2.edit();
-        editor.putString("邮箱", email);
-        editor.putString("密码", password);
-        editor.commit();
         return valid;
 
     }
 
-    public boolean testAccessPreference(String email, String password) {
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences("settings",
-                0);
-        String checkemail = sharedPreferences.getString("邮箱", "");
-        String checkpassword = sharedPreferences.getString("密码", "");
-        if (email == checkemail && password == checkpassword) {
-            return true;
-        } else
-            return false;
-        //  Log.i(TAG, checkemail + " : " +checkpassword);
-    }
 
 
 }

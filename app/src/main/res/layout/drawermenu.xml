@@ -17,6 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
+            android:clickable="true"
             android:src="@drawable/tab_01"/>
         <TextView
             android:id="@+id/adminname"
@@ -32,28 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/admininfo"
-        android:layout_marginTop="30dp"
-        android:divider="@null" />
+        android:layout_marginTop="50dp"
+        android:divider="@null"
+        android:dividerHeight="20dp"/>
 
-    <TextView
-        android:id="@+id/qiehuanzhuti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设置"
-        android:textSize="20dp"
-        android:drawableLeft="@drawable/settings"
-
-        android:layout_marginTop="30dp"
-
-        android:layout_below="@id/listview"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/home"
-        android:text="首页"
-        android:textSize="20dp"
-
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/qiehuanzhuti"/>
 
 </RelativeLayout>

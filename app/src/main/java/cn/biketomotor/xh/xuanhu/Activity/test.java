@@ -1,5 +1,6 @@
 package cn.biketomotor.xh.xuanhu.Activity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -25,14 +25,11 @@ import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.biketomotor.xh.xuanhu.Fragment.HomeFragment;
-import cn.biketomotor.xh.xuanhu.Fragment.MineFragment;
-import cn.biketomotor.xh.xuanhu.Fragment.UserCommentFragment;
 import cn.biketomotor.xh.xuanhu.R;
 
 
-public class HomepageActivity extends  AppCompatActivity {
-    private static final String TAG = "HomepageActivity";
+public class test extends  AppCompatActivity {
+    private static final String TAG = "test";
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private DrawerLayout drawerLayout;
@@ -87,14 +84,14 @@ public class HomepageActivity extends  AppCompatActivity {
                     case R.id.action_search:
                     {
 
-                        Intent intent = new Intent(HomepageActivity.this,designsearchview.class);
+                        Intent intent = new Intent(test.this,designsearchview.class);
                         startActivity(intent);
                         //Toast.makeText(HomepageActivity.this, "Search !", Toast.LENGTH_LONG).show();
                         break;
                     }
 
                     case R.id.action_notifications:
-                        Toast.makeText(HomepageActivity.this, "Notification !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(test.this, "Notification !", Toast.LENGTH_LONG).show();
                         break;
                 }
                 return true;
@@ -144,50 +141,13 @@ public class HomepageActivity extends  AppCompatActivity {
         listView = (ListView) findViewById(R.id.listview);
         ListAdapter adapter = new MenuAdapter(this,choices,choiceIcon);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position)
-                {
-                    case 0:
-                        Intent intent0 = new Intent(HomepageActivity.this,designsearchview.class);
-                        startActivity(intent0);
-                        break;
-                    case 1:
-                        Intent intent1 = new Intent(HomepageActivity.this,designsearchview.class);
-                        startActivity(intent1);
-                        break;
-                    case 2:
-                        Intent intent2 = new Intent(HomepageActivity.this,designsearchview.class);
-                        startActivity(intent2);
-                        break;
-                    case 3:
-                        Intent intent3 = new Intent(HomepageActivity.this,designsearchview.class);
-                        startActivity(intent3);
-                        break;
-                    case 4:
-                        Intent intent4 = new Intent(HomepageActivity.this,EditInfoActivity.class);
-                        startActivity(intent4);
-                        break;
-                    case 5:
-                        Intent intent5 = new Intent(HomepageActivity.this,designsearchview.class);
-                        startActivity(intent5);
-                        break;
-                    default:
-                            break;
-
-                }
-            }
-        });
 
         startbutton=(ImageView)this.findViewById(R.id.adminicon);
         startbutton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-               // Toast.makeText(HomepageActivity.this, "登录成功!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(HomepageActivity.this,designsearchview.class);
-                        startActivity(intent);
+                Toast.makeText(test.this, "尚未登录!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -219,15 +179,10 @@ public class HomepageActivity extends  AppCompatActivity {
         choices.add("我的点赞");
         choices.add("我的踩");
         choices.add("我的评论");
-        choices.add("设置");
-        choices.add("首页");
         choiceIcon.add(R.drawable.homepage);
-        choiceIcon.add(R.drawable.likeblue);
-        choiceIcon.add(R.drawable.dislikered);
-        choiceIcon.add(R.drawable.commentblue);
-        choiceIcon.add(R.drawable.settingsblue);
-        choiceIcon.add(R.drawable.homeblue);
-
+        choiceIcon.add(R.drawable.like);
+        choiceIcon.add(R.drawable.dislike);
+        choiceIcon.add(R.drawable.comment_1);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
