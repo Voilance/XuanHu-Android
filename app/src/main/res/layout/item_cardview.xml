@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="赞同了该答案"
+                android:text="发表了该评论"
                 android:textSize="17sp"
                 android:gravity="center_vertical"
                 android:layout_alignParentTop="true"
@@ -73,6 +73,7 @@
             android:textSize="18sp"
             android:text="Android开发测试Demo示例"
             android:layout_below="@id/relativelayout"
+            android:textColor="@color/lightsalmon"
             android:padding="4dp"/>
         <TextView
             android:id="@+id/content"
@@ -82,6 +83,7 @@
             android:ellipsize="end"
             android:text="测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容"
             android:layout_below="@id/title"
+            android:textColor="@color/lightpink"
             android:padding="4dp"/>
     </LinearLayout>
 

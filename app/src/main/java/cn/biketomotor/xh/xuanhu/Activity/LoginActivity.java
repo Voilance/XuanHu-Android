@@ -26,8 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private static final int REQUEST_GOHOME = 1;
-    public DrawerLayout mDrawerLayout;
-    public ActionBarDrawerToggle mDrawerToggle;
     @BindView(R.id.input_email)
     EditText _emailText;
     @BindView(R.id.input_password)
@@ -38,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView _signupLink;
     @BindView(R.id.link_gohome)
     TextView _gohomeLink;
-    String result = "";
 
 
     @Override
@@ -46,8 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -57,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         //返回首页
-
-
 
         _signupLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,8 +98,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
@@ -129,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
     }
 
-    //---------------------Edit---------------------//
     public void login() {
         Log.d(TAG, "Login");
 
@@ -198,7 +188,6 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
 
     }
-
 
 
 }

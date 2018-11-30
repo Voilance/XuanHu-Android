@@ -43,10 +43,11 @@ public class HomepageActivity extends  AppCompatActivity {
     private List<Integer> choiceIcon;
     private MyAdapter recyclerAdapter;
     private ImageView startbutton;
+    private ImageView userbutton;
     private  Toolbar toolbar;
     @BindView(R.id.adminicon)
-
     ImageView _adminicon;
+
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -72,9 +73,6 @@ public class HomepageActivity extends  AppCompatActivity {
 
 
     private void initViews() {
-        /**
-         *  初始化Toolbar
-         */
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("首页");
         //设置导航图标、添加菜单点击事件要在setSupportActionBar方法之后
@@ -102,17 +100,11 @@ public class HomepageActivity extends  AppCompatActivity {
         });
 
 
-        /**
-         *  初始化RecyclerView
-         */
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerAdapter = new MyAdapter(mData);
         recyclerView.setAdapter(recyclerAdapter);
 
-        /**
-         *  初始化swipeRefreshLayout
-         */
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.blue);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -132,9 +124,7 @@ public class HomepageActivity extends  AppCompatActivity {
                 }).start();
             }
         });
-        /**
-         *  初始化侧滑菜单 DrawerLayout
-         */
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -190,6 +180,17 @@ public class HomepageActivity extends  AppCompatActivity {
                         startActivity(intent);
             }
         });
+
+//        userbutton=(ImageView)this.findViewById(R.id.usericon);
+//        userbutton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // Toast.makeText(HomepageActivity.this, "登录成功!", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(HomepageActivity.this,designsearchview.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 

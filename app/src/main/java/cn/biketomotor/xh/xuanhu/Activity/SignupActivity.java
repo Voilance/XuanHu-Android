@@ -63,10 +63,7 @@ public class SignupActivity extends AppCompatActivity {
         });
 
 
-
     }
-
-
 
     public void signup() {
         Log.d(TAG, "SignUp");
@@ -84,7 +81,6 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("创建账号中...");
         progressDialog.show();
 
-
         // TODO: Implement your own signup logic here.
 
         new android.os.Handler().postDelayed(
@@ -94,7 +90,6 @@ public class SignupActivity extends AppCompatActivity {
                         // depending on success
                         onSignupSuccess();
 
-                        // onSignupFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -168,8 +163,6 @@ public class SignupActivity extends AppCompatActivity {
         editor.putString("密码",password);
         editor.putString("确认密码",reEnterPassword);
         editor.commit();
-
-
 
         return valid;
     }

@@ -1,6 +1,5 @@
 package cn.biketomotor.xh.xuanhu.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -46,7 +45,7 @@ public class welcomeActivity extends AppCompatActivity{
             }
         };
         Timer timer = new Timer();
-        timer.schedule(delayTask,2000);//延时两秒执行 run 里面的操作
+        timer.schedule(delayTask,2000);
     }
 }
 
