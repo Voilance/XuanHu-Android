@@ -1,10 +1,35 @@
 <resources>
 
     <!-- Base application theme. -->
+
+    <style name="APPTheme.Blue" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">#4682b4</item>
+        <item name="colorPrimaryDark">#4682b4</item>
+        <item name="colorAccent">#4682b4</item>
+    </style>
+    <style name="CustomNoActionBarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:textColor">@color/lightgrey</item>
+        <item name="drawerArrowStyle">@style/CustomNoActionBarTheme.drawerArrowStyle</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!--设置导航箭头的样式-->
+    <style name="CustomNoActionBarTheme.drawerArrowStyle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="android:color">@color/black</item>
+    </style>
+
+
+    <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">#2e8abb</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+    </style>
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimaryDark">@color/steelblue</item>
-        <item name="colorPrimary">@color/steelblue</item>
-        <item name="colorAccent">@color/steelblue</item>
     </style>
+
 </resources>

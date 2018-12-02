@@ -1,21 +1,9 @@
 package cn.biketomotor.xh.xuanhu.Api;
 
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Date;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
+import okhttp3.HttpUrl;
 
-import static cn.biketomotor.xh.xuanhu.Api.Constants.CONTENT_TYPE;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
@@ -23,6 +11,7 @@ public enum SessionApi {
     INSTANCE;
 
     private static final String LOGIN_PATH = "/api/login";
+    private static final String LOGOUT_PATH = "/api/logout";
 
     static class LoginForm {
         String email;
@@ -47,8 +36,23 @@ public enum SessionApi {
     }
 
     public Result<LoginResult> login(String email, String password) {
-        GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, LOGIN_PATH);
+        HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LOGIN_PATH).build();
+        GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, path);
         LoginForm form = new LoginForm(email, password);
-        return client.process(form);
+        return client.post(form);
+    }
+
+    static class LogoutForm {
+    }
+
+    public static class LogoutResult {
+        public boolean success = true;
+    }
+
+    public Result<LogoutResult> logout() {
+        HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LOGOUT_PATH).build();
+        GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, path);
+        LogoutForm form = new LogoutForm();
+        return client.post(form);
     }
 }

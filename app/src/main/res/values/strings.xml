@@ -79,4 +79,13 @@
 
     <!-- tab title -->
     <string name="tab_comment_title">\ue8e8评论</string>
+
+    <string name="openString">Open</string>
+    <string name="closeString">Close</string>
+    <string name="retract">Show less</string>
+    <string name="spread">Show more</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+    <string name="search_course">输入你感兴趣的课程</string>
 </resources>

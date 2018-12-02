@@ -1,5 +1,9 @@
 package cn.biketomotor.xh.xuanhu.Api;
 
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+
+import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 
 class HttpClientManager {
@@ -7,7 +11,9 @@ class HttpClientManager {
 
     static synchronized OkHttpClient getClient() {
         if (client == null) {
-            client = new OkHttpClient.Builder().build();
+            CookieManager cookieManager = new CookieManager();
+            cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+            client = new OkHttpClient.Builder().cookieJar(new JavaNetCookieJar(cookieManager)).build();
         }
         return client;
     }
