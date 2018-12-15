@@ -5,4 +5,8 @@ public class Teacher {
     public String name;
     public String intro;
     public int department_id;
+    @Override
+    public String toString(){
+        return name;
+    }
 }

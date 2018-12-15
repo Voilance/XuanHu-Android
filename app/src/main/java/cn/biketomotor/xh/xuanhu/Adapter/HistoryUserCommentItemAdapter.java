@@ -1,7 +1,6 @@
 package cn.biketomotor.xh.xuanhu.Adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import java.util.List;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
-public class HistoryCommentItemAdapter extends RecyclerView.Adapter<HistoryCommentItemAdapter.ViewHolder> {
+public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryUserCommentItemAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -39,12 +38,12 @@ public class HistoryCommentItemAdapter extends RecyclerView.Adapter<HistoryComme
     private List<CommentItem> commentItemList;
     private onItemClickListener clickListener;
 
-    public HistoryCommentItemAdapter(List<CommentItem> list) {
+    public HistoryUserCommentItemAdapter(List<CommentItem> list) {
         this.commentItemList = list;
     }
 
     @Override
-    public HistoryCommentItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryUserCommentItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_user_comment_item, parent, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +59,7 @@ public class HistoryCommentItemAdapter extends RecyclerView.Adapter<HistoryComme
     }
 
     @Override
-    public void onBindViewHolder(final HistoryCommentItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final HistoryUserCommentItemAdapter.ViewHolder holder, int position) {
         holder.tvTitle.setText(commentItemList.get(position).getCourseTitle());
         holder.tvTime.setText(commentItemList.get(position).getCreatedAt());
         holder.tvVoteUp.setText(String.valueOf(commentItemList.get(position).getVoteUp()));
@@ -74,7 +73,7 @@ public class HistoryCommentItemAdapter extends RecyclerView.Adapter<HistoryComme
         return commentItemList.size();
     }
 
-    public void setItemClickListener(HistoryCommentItemAdapter.onItemClickListener listener) {
+    public void setItemClickListener(HistoryUserCommentItemAdapter.onItemClickListener listener) {
         this.clickListener = listener;
     }
 

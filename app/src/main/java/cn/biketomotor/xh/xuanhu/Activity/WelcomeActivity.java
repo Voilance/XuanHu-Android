@@ -1,6 +1,5 @@
 package cn.biketomotor.xh.xuanhu.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,12 +12,13 @@ import android.view.WindowManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class welcomeActivity extends AppCompatActivity{
+import cn.biketomotor.xh.xuanhu.R;
+
+public class WelcomeActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_welcome);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
              Window window = getWindow();
@@ -31,6 +31,7 @@ public class welcomeActivity extends AppCompatActivity{
         }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_welcome);
         startMainActivity();
     }
 
@@ -40,13 +41,13 @@ public class welcomeActivity extends AppCompatActivity{
             @Override
             public void run() {
 
-                Intent mainIntent = new Intent(welcomeActivity.this,LoginActivity.class);
+                Intent mainIntent = new Intent(WelcomeActivity.this,MainActivity.class);
                 startActivity(mainIntent);
-                welcomeActivity.this.finish();
+                WelcomeActivity.this.finish();
             }
         };
         Timer timer = new Timer();
-        timer.schedule(delayTask,2000);//延时两秒执行 run 里面的操作
+        timer.schedule(delayTask,1000);
     }
 }
 

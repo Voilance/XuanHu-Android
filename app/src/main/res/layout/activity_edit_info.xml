@@ -325,7 +325,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/stxinwei"
-                        android:textSize="@dimen/comment_content_size" />
+                        android:textSize="@dimen/comment_content_size"
+                        android:background="@drawable/rounded_edit_text"
+                        android:padding="@dimen/normal_padding"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:minLines="5"
+                        android:maxLines="30"/>
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

@@ -14,7 +14,7 @@ import cn.biketomotor.xh.xuanhu.R;
 public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
+        private TextView tvUsername;
         private TextView tvTitleName;
         private TextView tvContent;
         private TextView tvVoteUp;
@@ -22,6 +22,7 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
 
         ViewHolder(View itemView) {
             super(itemView);
+            tvUsername = itemView.findViewById(R.id.tv_username);
             tvTitleName = itemView.findViewById(R.id.tv_title_name);
             tvContent = itemView.findViewById(R.id.tv_content);
             tvVoteUp = itemView.findViewById(R.id.tv_vote_up);
@@ -42,7 +43,7 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_comment_at_home, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_new_comment_item, parent, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +59,8 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.tvTitleName.setText(commentItemList.get(position).getCourseTitle() + "-" + commentItemList.get(position).getUserName());
+        holder.tvUsername.setText(commentItemList.get(position).getUserName());
+        holder.tvTitleName.setText(commentItemList.get(position).getCourseTitle());
         holder.tvContent.setText(commentItemList.get(position).getContent());
         holder.tvVoteUp.setText(String.valueOf(commentItemList.get(position).getVoteUp()));
         holder.tvVoteDown.setText(String.valueOf(commentItemList.get(position).getVoteDown()));
