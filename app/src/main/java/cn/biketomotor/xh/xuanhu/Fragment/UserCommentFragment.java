@@ -1,26 +1,19 @@
 package cn.biketomotor.xh.xuanhu.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabItem;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.biketomotor.xh.xuanhu.Activity.CourseDetail;
+import cn.biketomotor.xh.xuanhu.Activity.CourseDetailActivity;
 import cn.biketomotor.xh.xuanhu.Activity.MainActivity;
-import cn.biketomotor.xh.xuanhu.Adapter.HistoryCommentItemAdapter;
+import cn.biketomotor.xh.xuanhu.Adapter.HistoryUserCommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -31,20 +24,17 @@ public class UserCommentFragment extends Fragment {
     private View view = null;
     private RecyclerView recyclerView = null;
     private List<CommentItem> userComments = new ArrayList<>();
-    private HistoryCommentItemAdapter historyCommentItemAdapter = new HistoryCommentItemAdapter(userComments);
-    private MainActivity mainActivity;
+    private HistoryUserCommentItemAdapter historyCommentItemAdapter = new HistoryUserCommentItemAdapter(userComments);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user_comment, container, false);
-        mainActivity = (MainActivity)getActivity();
         recyclerView = view.findViewById(R.id.user_comment_recycler_view);
         recyclerView.setAdapter(historyCommentItemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        historyCommentItemAdapter.setItemClickListener(new HistoryCommentItemAdapter.onItemClickListener() {
+        historyCommentItemAdapter.setItemClickListener(new HistoryUserCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                Toast.makeText(mainActivity, commentList.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
-                CourseDetail.actionActivity(mainActivity);
+                CourseDetailActivity.actionActivity(getContext());
             }
         });
         Bundle bundle = this.getArguments();

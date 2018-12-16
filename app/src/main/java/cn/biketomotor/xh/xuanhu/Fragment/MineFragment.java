@@ -1,17 +1,21 @@
 package cn.biketomotor.xh.xuanhu.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.biketomotor.xh.xuanhu.Activity.BaseActivity;
 import cn.biketomotor.xh.xuanhu.Activity.EditInfoActivity;
 import cn.biketomotor.xh.xuanhu.Activity.MainActivity;
 import cn.biketomotor.xh.xuanhu.Adapter.UserCommentPageAdapter;
@@ -22,9 +26,11 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
 
     private ImageView ivAvatar;
     private TextView tvName;
-    private MainActivity mainActivity;
+    private Context context;
     private ViewPager vpComment;
     private View btInfo;
+    private TabLayout tabLayout;
+    private UserCommentPageAdapter pageAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
@@ -33,13 +39,21 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
         btInfo = view.findViewById(R.id.user_info_ll);
         ivAvatar.setOnClickListener(this);
         btInfo.setOnClickListener(this);
-        mainActivity = (MainActivity)getActivity();
-        TabLayout tabLayout = view.findViewById(R.id.user_comment_tab_layout);
+        context = getContext();
+        tabLayout = view.findViewById(R.id.user_comment_tab_layout);
         vpComment = view.findViewById(R.id.user_comment_pager);
-        UserCommentPageAdapter pageAdapter = new UserCommentPageAdapter(getChildFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new UserCommentPageAdapter(getChildFragmentManager(), tabLayout.getTabCount());
         vpComment.setAdapter(pageAdapter);
         vpComment.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(this);
+
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            if(bundle.containsKey("pos")){
+                int pos = bundle.getInt("pos");
+                vpComment.setCurrentItem(pos);
+            }
+        }
         return view;
     }
 
@@ -50,7 +64,7 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
             case R.id.iv_avatar:
                 // 点击头像，如果已经登陆，则跳转到编辑个人信息活动，否则跳转到登陆活动
 //                LoginActivity.actionActivity(mainActivity);
-                EditInfoActivity.actionActivity(mainActivity);
+                EditInfoActivity.actionActivity(context);
                 break;
             case R.id.bt_logout:
                 break;
@@ -73,4 +87,5 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
 }

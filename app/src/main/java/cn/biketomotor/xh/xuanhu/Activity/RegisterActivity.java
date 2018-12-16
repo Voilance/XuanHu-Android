@@ -31,7 +31,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initView() {
-        setContentView(R.layout.test_activity_register);
+        setContentView(R.layout.activity_register);
 
         etName = findViewById(R.id.et_name);
         etEmail = findViewById(R.id.et_email);
@@ -54,6 +54,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.tv_login:
                 // 销毁活动返回登陆活动
                 finish();
+                LoginActivity.actionActivity(this);
                 break;
             default:
                 break;

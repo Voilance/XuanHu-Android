@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.biketomotor.xh.xuanhu" >
+    package="cn.biketomotor.xh.xuanhu">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/xuanhu2"
-
-        android:theme="@style/AppTheme.Dark" >
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
         <activity
-            android:name="cn.biketomotor.xh.xuanhu.Activity.welcomeActivity"
-            android:windowSoftInputMode="adjustNothing" android:theme="@style/WelcomeThem" >
+            android:name=".Activity.WelcomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="cn.biketomotor.xh.xuanhu.Activity.LoginActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name="cn.biketomotor.xh.xuanhu.Activity.SignupActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name="cn.biketomotor.xh.xuanhu.Activity.HomepageActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name="cn.biketomotor.xh.xuanhu.Activity.SearchDemo" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name="cn.biketomotor.xh.xuanhu.Activity.designsearchview" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name="cn.biketomotor.xh.xuanhu.Activity.MainActivity"  android:theme="@style/AppTheme.Dark"/>
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.SearchActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.EditInfoActivity" />
+        <activity android:name=".Activity.CourseDetailActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Activity.OthersHomeActivity"></activity>
     </application>
 
 </manifest>

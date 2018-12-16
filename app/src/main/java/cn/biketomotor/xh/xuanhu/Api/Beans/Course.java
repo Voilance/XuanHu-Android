@@ -13,4 +13,8 @@ public class Course {
     public String course_type;
     public List<Teacher> teachers;
     public Department department;
+    public String getNameOfTeachers(){
+        String tmp = teachers.toString();
+        return tmp.substring(tmp.indexOf('[') + 1, tmp.lastIndexOf(']'));
+    }
 }

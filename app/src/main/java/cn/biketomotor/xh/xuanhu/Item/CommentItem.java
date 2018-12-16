@@ -1,5 +1,8 @@
 package cn.biketomotor.xh.xuanhu.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommentItem {
 
     private int courseID;
@@ -9,6 +12,7 @@ public class CommentItem {
     private String createdAt;
     private int voteUp;
     private int voteDown;
+    private List<CommentItem> replies = new ArrayList<>();
 
     public CommentItem(
             int courseID,
@@ -54,5 +58,9 @@ public class CommentItem {
 
     public int getVoteDown() {
         return voteDown;
+    }
+
+    public List<CommentItem> getReplies(){
+        return replies;
     }
 }

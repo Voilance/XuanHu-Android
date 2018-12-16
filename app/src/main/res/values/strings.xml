@@ -21,6 +21,11 @@
     <string name="submit_icon">\ue747</string>
     <string name="reset_psw_icon">\ue718</string>
 
+    <string name="login_icon">\ue697</string>
+    <string name="logout_icon">\ue637</string>
+    <string name="register_icon">\ue607</string>
+    <string name="home_icon">\ueb1b</string>
+
     <string name="info_str">个人资料</string>
     <string name="comment_str">评论</string>
     <string name="like_str">赞同</string>
@@ -47,6 +52,10 @@
     <string name="course_add_comment_icon">\ue779</string>
     <string name="course_introduction_icon">\ue6c4</string>
     <string name="course_comment_reply_icon">\ue637</string>
+
+    <!-- home icons -->
+    <string name="menu_icon">\ue7c5</string>
+    <string name="search_icon">\ue632</string>
 
     <!--placeholder string-->
     <string name="placeholder_comment_content">
@@ -88,4 +97,5 @@
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
     <string name="search_course">输入你感兴趣的课程</string>
+    <string name="title_activity_mine">MineActivity</string>
 </resources>

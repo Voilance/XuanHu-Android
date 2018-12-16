@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/comment_item_background"
+    android:layout_margin="@dimen/normal_margin_minus"
+    android:elevation="@dimen/normal_shadow"
+    android:clickable="true">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/normal_padding">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- department -->
+            <TextView
+                android:id="@+id/tv_course_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_course_school"/>
+            <TextView
+                android:text="-"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <!-- teacher -->
+            <TextView
+                android:id="@+id/tv_course_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_course_teacher"/>
+            <!-- teacher -->
+        </LinearLayout>
+        <!-- course title -->
+        <TextView
+            android:textSize="@dimen/comment_course_title_size"
+            android:id="@+id/tv_course_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_course_title"
+            android:textColor="@color/steelblue"/>
+        <!-- course intro -->
+        <TextView
+            android:fontFamily="@font/stxinwei"
+            android:id="@+id/tv_course_intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_course_introduction"
+            android:textSize="@dimen/comment_content_size"/>
+
+        <!-- course type -->
+        <TextView
+            android:layout_gravity="right"
+            android:id="@+id/tv_course_type"
+            android:padding="@dimen/normal_padding_minus"
+            android:layout_margin="@dimen/normal_margin_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_course_type"
+            android:background="@drawable/course_type_background"/>
+    </LinearLayout>
+</FrameLayout>
