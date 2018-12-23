@@ -34,7 +34,7 @@ public class UserCommentFragment extends Fragment {
         historyCommentItemAdapter.setItemClickListener(new HistoryUserCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                CourseDetailActivity.actionActivity(getContext());
+                CourseDetailActivity.actionActivity(getContext(), 0);
             }
         });
         Bundle bundle = this.getArguments();
