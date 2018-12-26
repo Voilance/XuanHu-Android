@@ -50,12 +50,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Api.CommentApi;
+import cn.biketomotor.xh.xuanhu.Api.Result;
+import cn.biketomotor.xh.xuanhu.Api.SessionApi;
+import cn.biketomotor.xh.xuanhu.Class.LocalUser;
 import cn.biketomotor.xh.xuanhu.Class.Sys;
 import cn.biketomotor.xh.xuanhu.Fragment.HomeFragment;
 import cn.biketomotor.xh.xuanhu.Fragment.MineFragment;
@@ -150,12 +157,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void onAutoLogin() {
+        Log.e(TAG, "onAutoLogin: ");
         // 读取存在本地的用户信息
         Sys.readSP(getSharedPreferences(Sys.SPName, Context.MODE_PRIVATE));
+        Log.e(TAG, "hi" + Sys.getEmail() + Sys.getPassword());
         // 如果存在本地的用户信息不为空且上次退出应用时处于登陆状态，则自动登陆
         if (!Sys.getEmail().equals("") && Sys.isLogin()) {
             // 登陆成功：初始化个人信息，右上角显示头像昵称等基本信息。
             // 登陆失败：右上角显示“登陆”按钮
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    final Result<SessionApi.LoginResult> result = SessionApi.INSTANCE.login(Sys.getEmail(), Sys.getPassword());
+                    if (result.isOk()) {
+                        if (result.get().success) {
+                            Log.e(TAG, "run:success");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    LocalUser.online = true;
+                                }
+                            });
+                        } else {
+                            Sys.setLogin(false);
+                            Sys.writeSP(getSharedPreferences(Sys.SPName, Context.MODE_PRIVATE));
+                        }
+                    } else {
+                        Log.e(TAG, result.getErrorMessage());
+                        Sys.setLogin(false);
+                        Sys.writeSP(getSharedPreferences(Sys.SPName, Context.MODE_PRIVATE));
+                    }
+                }
+            }).start();
         }
     }
 

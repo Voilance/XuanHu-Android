@@ -16,16 +16,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Activity.CourseDetailActivity;
+import cn.biketomotor.xh.xuanhu.Activity.MainActivity;
 import cn.biketomotor.xh.xuanhu.Adapter.NewCommentItemAdapter;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Api.CommentApi;
+import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
     private static final String TAG = "TagHome";
-    private List<CommentItem>     commentList;
+
+    private List<Comment>     commentList;
     private NewCommentItemAdapter newCommentItemAdapter;
     private RecyclerView          recyclerView;
     private SwipyRefreshLayout swipyRefreshLayout;
+
+    private MainActivity mainActivity;
+    private int CommentPage;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -36,7 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         newCommentItemAdapter.setItemClickListener(new NewCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                CourseDetailActivity.actionActivity(getContext());
+                CourseDetailActivity.actionActivity(getContext(), commentList.get(position).course.id);
             }
         });
         recyclerView.setAdapter(newCommentItemAdapter);
@@ -50,36 +59,34 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 swipyRefreshLayout.setRefreshing(false);
             }
         });
-        getComment();
 
+        mainActivity = (MainActivity)getActivity();
+        CommentPage = 1;
+        getComment();
 
         return view;
     }
 
     private void getComment() {
-        // 获取5条评论
-        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-//        commentList.add(new CommentItem(0, "courseTitle", "userName", "content", "createdAt", 0, 0));
-        newCommentItemAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bt_more:
-                getComment();
-                break;
-            default:
-                break;
-        }
+        // 获取一页评论
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result<List<Comment>> result = CommentApi.INSTANCE.latest(CommentPage);
+                if (result.isOk()) {
+                    List<Comment> comments = result.get();
+                    commentList.addAll(comments);
+                    mainActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            newCommentItemAdapter.notifyDataSetChanged();
+                        }
+                    });
+                    CommentPage += 1;
+                } else {
+                    Log.e(TAG, "getComment: " + result.getErrorMessage());
+                }
+            }
+        }).start();
     }
 }

@@ -74,7 +74,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         searchResultItemAdapter.setItemClickListener(new SearchResultItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                CourseDetailActivity.actionActivity(SearchActivity.this);
+                CourseDetailActivity.actionActivity(SearchActivity.this, 0);
             }
         });
         getCourses();

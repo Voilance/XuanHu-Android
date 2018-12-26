@@ -23,7 +23,7 @@ public enum SessionApi {
         }
     }
 
-    static class LoginResult {
+    public static class LoginResult {
         public boolean success = true;
         public int id;
         public String email;

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -34,11 +35,11 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
         void onItemClick(int position);
     }
 
-    private List<CommentItem> commentItemList;
+    private List<Comment> commentList;
     private onItemClickListener clickListener;
 
-    public NewCommentItemAdapter(List<CommentItem> list) {
-        this.commentItemList = list;
+    public NewCommentItemAdapter(List<Comment> list) {
+        this.commentList = list;
     }
 
     @Override
@@ -49,8 +50,6 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
             public void onClick(View v) {
                 if (clickListener != null) {
                     clickListener.onItemClick((Integer)v.getTag());
-//                    switch (v.getId()) {
-//                    }
                 }
             }
         });
@@ -59,17 +58,17 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.tvUsername.setText(commentItemList.get(position).getUserName());
-        holder.tvTitleName.setText(commentItemList.get(position).getCourseTitle());
-        holder.tvContent.setText(commentItemList.get(position).getContent());
-        holder.tvVoteUp.setText(String.valueOf(commentItemList.get(position).getVoteUp()));
-        holder.tvVoteDown.setText(String.valueOf(commentItemList.get(position).getVoteDown()));
+        holder.tvUsername.setText(commentList.get(position).user.name);
+        holder.tvTitleName.setText(commentList.get(position).course.title);
+        holder.tvContent.setText(commentList.get(position).content);
+        holder.tvVoteUp.setText(String.valueOf(commentList.get(position).voteUp));
+        holder.tvVoteDown.setText(String.valueOf(commentList.get(position).voteDown));
         holder.itemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
-        return commentItemList.size();
+        return commentList.size();
     }
 
     public void setItemClickListener(onItemClickListener listener) {

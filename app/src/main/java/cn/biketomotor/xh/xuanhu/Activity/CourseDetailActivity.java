@@ -14,21 +14,31 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Adapter.CourseDetailPageAdapter;
 import cn.biketomotor.xh.xuanhu.Adapter.HistoryCourseCommentItemAdapter;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
+import cn.biketomotor.xh.xuanhu.Api.CourseApi;
+import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.Fragment.CourseCommentFragment;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
 public class CourseDetailActivity extends BaseActivity implements View.OnClickListener,TabLayout.BaseOnTabSelectedListener {
+    private static final String TAG = "TagCourseDetail";
+
     private ViewPager vpCourseDetail;
     private CourseDetailPageAdapter pageAdapter;
     private TabLayout tlCourseDetail;
     private View btAddNewComment;
-    private Course course = new Course();
+    private Course course;
+    private List<Comment> commentList;
+
+    private int courseID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +55,58 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
         vpCourseDetail.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tlCourseDetail));
         tlCourseDetail.addOnTabSelectedListener(this);
         btAddNewComment.setOnClickListener(this);
+
+        Intent intent = getIntent();
+        courseID = intent.getIntExtra("courseID", 0);
+
+        commentList = new ArrayList<>();
+        getCourse();
+        getCourseComments();
     }
 
-    public static void actionActivity(Context context) {
+    private void getCourse() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result<Course> result = CourseApi.INSTANCE.getCourse(courseID);
+                if (result.isOk()) {
+                    course = result.get();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ;
+                        }
+                    });
+                } else {
+                    Log.e(TAG, result.getErrorMessage());
+                }
+            }
+        }).start();
+    }
+
+    private void getCourseComments() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result<List<Comment>> result = CourseApi.INSTANCE.getCourseComments(courseID);
+                if (result.isOk()) {
+                    commentList.addAll(result.get());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ;
+                        }
+                    });
+                } else {
+                    Log.e(TAG, result.getErrorMessage());
+                }
+            }
+        }).start();
+    }
+
+    public static void actionActivity(Context context, int id) {
         Intent intent = new Intent(context, CourseDetailActivity.class);
+        intent.putExtra("courseID", id);
         context.startActivity(intent);
     }
 
