@@ -1,14 +1,11 @@
 package cn.biketomotor.xh.xuanhu.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,7 +14,6 @@ import cn.biketomotor.xh.xuanhu.Activity.CourseDetailActivity;
 import cn.biketomotor.xh.xuanhu.Activity.MoreCommentsActivity;
 import cn.biketomotor.xh.xuanhu.Activity.OthersHomeActivity;
 import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
-import cn.biketomotor.xh.xuanhu.Interface.AddCommentDialogPopupable;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -108,7 +104,7 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
             holder.btReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((AddCommentDialogPopupable)context).popupAddCommentDialog(hccia, replies, item);
+                    CourseDetailActivity.popupAddCommentDialog(context, hccia, replies, item);
                 }
             });
         }

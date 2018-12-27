@@ -2,11 +2,9 @@ package cn.biketomotor.xh.xuanhu.Activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,11 +22,10 @@ import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
 import cn.biketomotor.xh.xuanhu.Api.CourseApi;
 import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.Fragment.CourseCommentFragment;
-import cn.biketomotor.xh.xuanhu.Interface.AddCommentDialogPopupable;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
-public class CourseDetailActivity extends BaseActivity implements View.OnClickListener,TabLayout.BaseOnTabSelectedListener, AddCommentDialogPopupable {
+public class CourseDetailActivity extends BaseActivity implements View.OnClickListener,TabLayout.BaseOnTabSelectedListener {
     private static final String TAG = "TagCourseDetail";
 
     private ViewPager vpCourseDetail;
@@ -133,17 +130,17 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
                 vpCourseDetail.setCurrentItem(1);
                 CourseCommentFragment fragment = (CourseCommentFragment)pageAdapter.getCurrentFragment();
                 View view = fragment.getView();
-                popupAddCommentDialog(fragment.getCourseCommentAdapter(), fragment.getCourseComments(), null);
+                popupAddCommentDialog(this, fragment.getCourseCommentAdapter(), fragment.getCourseComments(), null);
                 break;
         }
     }
 
 
 
-    public void popupAddCommentDialog(final HistoryCourseCommentItemAdapter adapter, final List<CommentItem> comments, final CommentItem parent){
-        LayoutInflater li = LayoutInflater.from(this);
+    public static void popupAddCommentDialog(Context context, final HistoryCourseCommentItemAdapter adapter, final List<CommentItem> comments, final CommentItem parent){
+        LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.dialog_new_comment, null);
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(promptsView).setCancelable(true);
         final EditText userInput = promptsView.findViewById(R.id.et_comment_content);
         final TextView btOk = promptsView.findViewById(R.id.bt_ok);
