@@ -24,10 +24,11 @@ import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
 import cn.biketomotor.xh.xuanhu.Api.CourseApi;
 import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.Fragment.CourseCommentFragment;
+import cn.biketomotor.xh.xuanhu.Interface.AddCommentDialogPopupable;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
-public class CourseDetailActivity extends BaseActivity implements View.OnClickListener,TabLayout.BaseOnTabSelectedListener {
+public class CourseDetailActivity extends BaseActivity implements View.OnClickListener,TabLayout.BaseOnTabSelectedListener, AddCommentDialogPopupable {
     private static final String TAG = "TagCourseDetail";
 
     private ViewPager vpCourseDetail;
@@ -132,14 +133,14 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
                 vpCourseDetail.setCurrentItem(1);
                 CourseCommentFragment fragment = (CourseCommentFragment)pageAdapter.getCurrentFragment();
                 View view = fragment.getView();
-                popupAddCommentDialog(fragment.getCourseCommentAdapter(), fragment.getCourseComments());
+                popupAddCommentDialog(fragment.getCourseCommentAdapter(), fragment.getCourseComments(), null);
                 break;
         }
     }
 
 
 
-    public void popupAddCommentDialog(final HistoryCourseCommentItemAdapter adapter, final List<CommentItem> comments){
+    public void popupAddCommentDialog(final HistoryCourseCommentItemAdapter adapter, final List<CommentItem> comments, final CommentItem parent){
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.dialog_new_comment, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -160,7 +161,13 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 String commentContent = userInput.getText().toString();
-                comments.add(new CommentItem(0, "MyDisagree", "userName", commentContent, "createdAt", 0, 0));
+                CommentItem item = new CommentItem(0, "MyDisagree", "userName", commentContent, "createdAt", 0, 0);
+                if(parent != null){
+                    parent.addReply(item);
+                }
+                else{
+                    comments.add(item);
+                }
                 adapter.notifyDataSetChanged();
                 alertDialog.dismiss();
             }

@@ -81,6 +81,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView menuIcon;
     private DrawerLayout drawerLayout;
     private ImageView userAvatar;
+    private TextView tvTitle;
+
+    private final int MINE_FRAGMENT = 0;
+    private final int HOME_FRAGMENT = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +95,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void initView() {
         setContentView(R.layout.activity_main);
-        replaceFragment(new HomeFragment());
 
         btSearch = findViewById(R.id.bt_search);
         btMyComments = findViewById(R.id.bt_my_comments);
@@ -103,6 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         drawerLayout = findViewById(R.id.drawer_layout);
         userAvatar = findViewById(R.id.iv_avatar);
         menuIcon = findViewById(R.id.menu_icon);
+        tvTitle = findViewById(R.id.tv_title);
 
         menuIcon.setOnClickListener(this);
         userAvatar.setOnClickListener(this);
@@ -115,6 +120,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btMyVoteUp.setOnClickListener(this);
         btMyVoteDown.setOnClickListener(this);
         makeDrawerMoreSensitive();
+        replaceFragment(new HomeFragment());
     }
 
 
@@ -200,6 +206,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if(drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+        if(fragment instanceof MineFragment){
+            tvTitle.setText("个人主页");
+        }
+        else{
+            tvTitle.setText("最新评论");
+        }
     }
 
     private void makeDrawerMoreSensitive(){
@@ -223,8 +235,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         //如果此时是在个人主页
-        Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MineFragment.class.getName());
-        if(mineFragment != null){
+        if(getCurFragmentType() == MINE_FRAGMENT){
             //那么返回首页
             replaceFragment(new HomeFragment());
         }
@@ -240,5 +251,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         bundle.putInt("pos", pos);
         mineFragment.setArguments(bundle);
         replaceFragment(mineFragment);
+    }
+
+    private int getCurFragmentType(){
+        Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MineFragment.class.getName());
+        if(mineFragment != null){
+            return MINE_FRAGMENT;
+        }
+        return HOME_FRAGMENT;
     }
 }

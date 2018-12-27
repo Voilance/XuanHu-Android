@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
         });
         recyclerView.setAdapter(newCommentItemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        swipyRefreshLayout.setDistanceToTriggerSync(10);
+        swipyRefreshLayout.setDistanceToTriggerSync(100);
         swipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh(SwipyRefreshLayoutDirection direction) {

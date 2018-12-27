@@ -26,7 +26,7 @@ public class CourseCommentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_course_comment, container, false);
         rvCourseComment = view.findViewById(R.id.rv_comment_list);
-        historyCommentItemAdapter = new HistoryCourseCommentItemAdapter(this.getActivity(), courseComments);
+        historyCommentItemAdapter = new HistoryCourseCommentItemAdapter(this.getActivity(), courseComments, 0);
         historyCommentItemAdapter.setItemClickListener(new HistoryCourseCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -47,8 +47,8 @@ public class CourseCommentFragment extends Fragment {
         courseComments.add(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
         courseComments.add(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
         courseComments.add(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
-        courseComments.get(0).getReplies().add(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
-        courseComments.get(0).getReplies().get(0).getReplies().add(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
+        courseComments.get(0).addReply(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
+        courseComments.get(0).getReplies().get(0).addReply(new CommentItem(0, "MyDisagree", "userName", "content", "createdAt", 0, 0));
         historyCommentItemAdapter.notifyDataSetChanged();
     }
 

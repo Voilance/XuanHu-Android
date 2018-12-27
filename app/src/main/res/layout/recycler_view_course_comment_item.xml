@@ -6,7 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/comment_item_margin"
+    android:layout_marginTop="@dimen/comment_item_margin"
+    android:layout_marginLeft="@dimen/comment_item_margin"
+    android:layout_marginBottom="@dimen/comment_item_margin"
     android:background="@drawable/comment_item_background"
     android:elevation="@dimen/normal_shadow"
     android:clickable="true">
@@ -16,7 +18,9 @@
         android:id="@+id/comment_item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/comment_item_padding"
+        android:paddingTop="@dimen/comment_item_padding"
+        android:paddingLeft="@dimen/comment_item_padding"
+        android:paddingBottom="@dimen/comment_item_padding"
         android:orientation="vertical"
         android:showDividers="middle"
         android:divider="@drawable/vertical_space_divider">
@@ -79,8 +83,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:clickable="true">
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_marginRight="@dimen/normal_margin">
 
             <!-- reply icon -->
             <LinearLayout
@@ -100,6 +105,19 @@
                     android:textSize="@dimen/comment_thumb_size"
                     android:textColor="@color/steelblue" />
             </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_more_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:fontFamily="@font/more"
+                android:padding="@dimen/thumb_padding"
+                android:text="@string/more_icon"
+                android:textSize="@dimen/comment_thumb_size"
+                android:visibility="invisible"/>
 
             <!-- vote up -->
             <LinearLayout

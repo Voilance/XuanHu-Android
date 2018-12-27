@@ -22,21 +22,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1">
-
-                <!-- comment user -->
-                <TextView
-                    android:id="@+id/username_view"
-                    android:textSize="@dimen/comment_user_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/placeholder_comment_user" />
 
                 <!-- comment course title -->
                 <TextView
@@ -57,18 +50,32 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="64dp"
-                android:layout_height="64dp">
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_gravity="center"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <FrameLayout
                     android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/default_avatar"
-                    android:scaleType="fitXY"
-                    android:background="@drawable/round_background_with_border"
-                    app:riv_oval="true" />
-            </FrameLayout>
+                    android:layout_height="48dp">
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_gravity="center"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/default_avatar"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/round_background_with_border"
+                        app:riv_oval="true" />
+                </FrameLayout>
+
+                <!-- comment user -->
+                <TextView
+                    android:id="@+id/username_view"
+                    android:textSize="@dimen/comment_user_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_comment_user" />
+            </LinearLayout>
         </LinearLayout>
 
         <!--<View style="@style/line_divider"/>-->

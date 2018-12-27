@@ -26,6 +26,8 @@
     <string name="register_icon">\ue607</string>
     <string name="home_icon">\ueb1b</string>
 
+    <string name="more_icon">\ue60a</string>
+
     <string name="info_str">个人资料</string>
     <string name="comment_str">评论</string>
     <string name="like_str">赞同</string>
