@@ -98,13 +98,14 @@
                 </FrameLayout>
 
                 <TextView
-                    android:id="@+id/user_name"
+                    android:id="@+id/tv_name"
+                    android:layout_marginBottom="@dimen/normal_margin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/stxinwei"
-                    android:text="@string/placeholder_user_name"
+                    android:text="未登录"
                     android:textSize="@dimen/normal_text_size"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </FrameLayout>

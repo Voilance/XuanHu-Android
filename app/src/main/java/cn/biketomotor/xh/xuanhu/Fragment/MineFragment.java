@@ -3,11 +3,14 @@ package cn.biketomotor.xh.xuanhu.Fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Trace;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +18,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.biketomotor.xh.xuanhu.Activity.BaseActivity;
 import cn.biketomotor.xh.xuanhu.Activity.EditInfoActivity;
 import cn.biketomotor.xh.xuanhu.Activity.MainActivity;
+import cn.biketomotor.xh.xuanhu.Activity.OthersHomeActivity;
 import cn.biketomotor.xh.xuanhu.Adapter.UserCommentPageAdapter;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Api.Result;
+import cn.biketomotor.xh.xuanhu.Api.UserApi;
+import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
+import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.R;
 
 public class MineFragment extends Fragment implements View.OnClickListener, TabLayout.BaseOnTabSelectedListener {
@@ -31,11 +43,14 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
     private View btInfo;
     private TabLayout tabLayout;
     private UserCommentPageAdapter pageAdapter;
+    private UserApi.UserInfo userInfo;
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mine, container, false);
+        view = inflater.inflate(R.layout.fragment_mine, container, false);
         ivAvatar = view.findViewById(R.id.iv_avatar);
         tvName = view.findViewById(R.id.tv_name);
+        getInfo();
         btInfo = view.findViewById(R.id.user_info_ll);
         ivAvatar.setOnClickListener(this);
         btInfo.setOnClickListener(this);
@@ -46,7 +61,6 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
         vpComment.setAdapter(pageAdapter);
         vpComment.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(this);
-
         Bundle bundle = getArguments();
         if(bundle != null){
             if(bundle.containsKey("pos")){
@@ -64,7 +78,7 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
             case R.id.iv_avatar:
                 // 点击头像，如果已经登陆，则跳转到编辑个人信息活动，否则跳转到登陆活动
 //                LoginActivity.actionActivity(mainActivity);
-                EditInfoActivity.actionActivity(context);
+                EditInfoActivity.actionActivity(context, userInfo.id);
                 break;
             case R.id.bt_logout:
                 break;
@@ -86,6 +100,28 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    private void getInfo(){
+        Activity activity = getActivity();
+        final int userId = activity.getIntent().getIntExtra("userId", -1);
+        if(userId == -1)return;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Result<UserApi.UserInfo>infoResult = UserApi.INSTANCE.getUserInfo(userId);
+                if(infoResult.isOk()){
+                    userInfo = infoResult.get();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvName.setText(userInfo.name);
+                            Util.loadImageFromUrl(userInfo.avatar_url, ivAvatar, getActivity());
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
 }

@@ -21,7 +21,6 @@ import cn.biketomotor.xh.xuanhu.Adapter.NewCommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Api.CommentApi;
 import cn.biketomotor.xh.xuanhu.Api.Result;
-import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
 public class HomeFragment extends Fragment {
@@ -40,8 +39,9 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.rv_comment_list);
         swipyRefreshLayout = view.findViewById(R.id.swipy_layout);
+        mainActivity = (MainActivity)getActivity();
         commentList = new ArrayList<>();
-        newCommentItemAdapter = new NewCommentItemAdapter(commentList);
+        newCommentItemAdapter = new NewCommentItemAdapter(commentList, mainActivity);
         newCommentItemAdapter.setItemClickListener(new NewCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mainActivity = (MainActivity)getActivity();
         CommentPage = 1;
         getComment();
 

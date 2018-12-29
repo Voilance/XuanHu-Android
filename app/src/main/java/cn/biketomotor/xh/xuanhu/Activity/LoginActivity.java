@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                        Sys.setLogin(true);
 //                        Sys.writeSP(getSharedPreferences(Sys.SPName, Context.MODE_PRIVATE));
 //                        Log.e(TAG, "hello" + Sys.getEmail() + Sys.getPassword());
-//                        finish();
+                        finish();
                     }
                 } else {
                     Log.e(TAG, result.getErrorMessage());

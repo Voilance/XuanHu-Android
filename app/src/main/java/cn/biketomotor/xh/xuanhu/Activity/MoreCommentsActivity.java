@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Adapter.HistoryCourseCommentItemAdapter;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
-import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
 //当嵌套评论过多时，点击省略号跳转到这里
 public class MoreCommentsActivity extends BaseActivity {
     private View view = null;
-    List<CommentItem> courseComments = new ArrayList<>();
+    List<Comment> courseComments = new ArrayList<>();
     HistoryCourseCommentItemAdapter historyCommentItemAdapter;
     RecyclerView rvCourseComment = null;
     int depth = 1;
@@ -31,7 +31,7 @@ public class MoreCommentsActivity extends BaseActivity {
         historyCommentItemAdapter.setItemClickListener(new HistoryCourseCommentItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                OthersHomeActivity.actionActivity(MoreCommentsActivity.this);
+                OthersHomeActivity.actionActivity(MoreCommentsActivity.this, courseComments.get(position).user.id);
             }
         });
         Intent intent = getIntent();
@@ -41,7 +41,7 @@ public class MoreCommentsActivity extends BaseActivity {
 
         rvCourseComment.setAdapter(historyCommentItemAdapter);
         rvCourseComment.setLayoutManager(new LinearLayoutManager(MoreCommentsActivity.this));
-        CommentItem item = GlobalDataChannel.targetCommentItem;
+        Comment item = GlobalDataChannel.targetCommentItem;
         if(item != null){
             historyCommentItemAdapter.setDepth(this.depth);
             courseComments.add(item);

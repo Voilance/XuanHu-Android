@@ -61,31 +61,47 @@
 
     <!--placeholder string-->
     <string name="placeholder_comment_content">
-        黄有东老师上课真的非常非常非常有激情，思路非常非常非常清晰，
-        对于古代各个阶段的文学发展都有自己读到的见解，而且教学形式多样，
-        会让同学们写诗、自由演讲等，总能激发同学们的上课兴趣。
-        而且令人惊艳的是，慕课上黄老师的视频非常赞，派出了百家讲坛、访谈大学者的感觉，
-        对于本人这种对文学较有兴趣的人来说这学期课学下来不仅不亏，
-        而且非常赚。期末考核也很简单。
-        The teacher is nice, and the course is awesome.
-        The students are active. I am very satisfied.
+        <!--黄有东老师上课真的非常非常非常有激情，思路非常非常非常清晰，-->
+        <!--对于古代各个阶段的文学发展都有自己读到的见解，而且教学形式多样，-->
+        <!--会让同学们写诗、自由演讲等，总能激发同学们的上课兴趣。-->
+        <!--而且令人惊艳的是，慕课上黄老师的视频非常赞，派出了百家讲坛、访谈大学者的感觉，-->
+        <!--对于本人这种对文学较有兴趣的人来说这学期课学下来不仅不亏，-->
+        <!--而且非常赚。期末考核也很简单。-->
+        <!--The teacher is nice, and the course is awesome.-->
+        <!--The students are active. I am very satisfied.-->
     </string>
-    <string name="placeholder_comment_date">2018-11-17 20:10:32</string>
-    <string name="placeholder_course_title">中国文学与文化</string>
-    <string name="placeholder_comment_user">佚名</string>
-    <string name="placeholder_course_school">新闻与传播学院</string>
-    <string name="placeholder_course_type">人文科学核心</string>
-    <string name="placeholder_course_teacher">黄有东</string>
+    <string name="placeholder_comment_date">
+        <!--2018-11-17 20:10:32-->
+    </string>
+    <string name="placeholder_course_title">
+        <!--中国文学与文化-->
+    </string>
+    <string name="placeholder_comment_user">
+        <!--佚名-->
+    </string>
+    <string name="placeholder_course_school">
+        <!--新闻与传播学院-->
+    </string>
+    <string name="placeholder_course_type">
+        <!--人文科学核心-->
+    </string>
+    <string name="placeholder_course_teacher">
+        <!--黄有东-->
+    </string>
     <string name="placeholder_course_introduction">
-        本课程以诗歌、小说、戏剧、散文为重点，对中国的古代文学发展脉络及其特征进行介绍，
-        重点选取诗经、楚辞、哲理散文、唐诗、宋词、元曲、明清小说、自由诗、话剧、现代小说、朦胧诗、当代小说，
-        对中国文学史上重要的流派、作家及经典作品进行深入介绍，借助“知人论世”与“以意逆志”的解释路径，
-        试图进行深层次的文化解读。力图在学生以往学习的基础上，展现另一方美景，
-        从而丰富学生的艺术修养，提高其审美趣味与文化素质。
+        <!--本课程以诗歌、小说、戏剧、散文为重点，对中国的古代文学发展脉络及其特征进行介绍，-->
+        <!--重点选取诗经、楚辞、哲理散文、唐诗、宋词、元曲、明清小说、自由诗、话剧、现代小说、朦胧诗、当代小说，-->
+        <!--对中国文学史上重要的流派、作家及经典作品进行深入介绍，借助“知人论世”与“以意逆志”的解释路径，-->
+        <!--试图进行深层次的文化解读。力图在学生以往学习的基础上，展现另一方美景，-->
+        <!--从而丰富学生的艺术修养，提高其审美趣味与文化素质。-->
     </string>
 
-    <string name="placeholder_user_email">359749340@qq.com</string>
-    <string name="placeholder_user_name">username</string>
+    <string name="placeholder_user_email">
+        <!--359749340@qq.com-->
+    </string>
+    <string name="placeholder_user_name">
+        <!--未登录-->
+    </string>
 
 
     <!-- tab title -->

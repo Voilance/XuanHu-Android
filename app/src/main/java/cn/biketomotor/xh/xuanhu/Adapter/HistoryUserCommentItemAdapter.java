@@ -1,13 +1,17 @@
 package cn.biketomotor.xh.xuanhu.Adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -20,6 +24,7 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
         private TextView tvVoteUp;
         private TextView tvVoteDown;
         private TextView tvContent;
+        private ImageView ivAvatar;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -28,6 +33,7 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
             tvVoteUp = itemView.findViewById(R.id.tv_vote_up);
             tvVoteDown = itemView.findViewById(R.id.tv_vote_down);
             tvContent = itemView.findViewById(R.id.tv_content);
+            ivAvatar = itemView.findViewById(R.id.iv_avatar);
         }
     }
 
@@ -35,10 +41,11 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
         void onItemClick(int position);
     }
 
-    private List<CommentItem> commentItemList;
+    private List<Comment> commentItemList;
     private onItemClickListener clickListener;
-
-    public HistoryUserCommentItemAdapter(List<CommentItem> list) {
+    private Activity activity;
+    public HistoryUserCommentItemAdapter(Activity activity, List<Comment> list) {
+        this.activity = activity;
         this.commentItemList = list;
     }
 
@@ -60,12 +67,19 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
 
     @Override
     public void onBindViewHolder(final HistoryUserCommentItemAdapter.ViewHolder holder, int position) {
-        holder.tvTitle.setText(commentItemList.get(position).getCourseTitle());
-        holder.tvTime.setText(commentItemList.get(position).getCreatedAt());
-        holder.tvVoteUp.setText(String.valueOf(commentItemList.get(position).getVoteUp()));
-        holder.tvVoteDown.setText(String.valueOf(commentItemList.get(position).getVoteDown()));
-        holder.tvContent.setText(commentItemList.get(position).getContent());
+        holder.tvTitle.setText(commentItemList.get(position).course.title);
+        holder.tvTime.setText(commentItemList.get(position).getCreateAtAsString());
+        holder.tvVoteUp.setText(String.valueOf(commentItemList.get(position).voteUp));
+        holder.tvVoteDown.setText(String.valueOf(commentItemList.get(position).voteDown));
+        holder.tvContent.setText(commentItemList.get(position).content);
         holder.itemView.setTag(position);
+        String url = commentItemList.get(position).user.avatar_url;
+        if(url == null){
+            holder.ivAvatar.setImageResource(R.drawable.default_avatar);
+        }
+        else{
+            Util.loadImageFromUrl(url, holder.ivAvatar, activity);
+        }
     }
 
     @Override

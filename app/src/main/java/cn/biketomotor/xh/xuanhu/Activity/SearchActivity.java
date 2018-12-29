@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
@@ -15,6 +16,8 @@ import cn.biketomotor.xh.xuanhu.Adapter.SearchResultItemAdapter;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Department;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Teacher;
+import cn.biketomotor.xh.xuanhu.Api.Result;
+import cn.biketomotor.xh.xuanhu.Api.SearchApi;
 import cn.biketomotor.xh.xuanhu.CustomUIElement.TouchableDrawableEditText;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -26,7 +29,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private View btSearch;
     private TouchableDrawableEditText etSearch;
     private RecyclerView rvSearchResult;
-    List<Course> courseList;
+    List<SearchApi.CourseSearched> courseList;
     SearchResultItemAdapter searchResultItemAdapter;
     private static final String[] candidateCourses = {
             "跨文化交际",
@@ -74,10 +77,9 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         searchResultItemAdapter.setItemClickListener(new SearchResultItemAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                CourseDetailActivity.actionActivity(SearchActivity.this, 0);
+                CourseDetailActivity.actionActivity(SearchActivity.this, courseList.get(position).id);
             }
         });
-        getCourses();
     }
 
     public static void actionActivity(Context context) {
@@ -89,7 +91,8 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bt_search:
-
+                String keyword = etSearch.getText().toString();
+                search(keyword);
                 break;
             case R.id.et_search:
                 etSearch.showDropDown();
@@ -108,22 +111,22 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    private void getCourses() {
-        // 获取5条评论
-        for(int i = 0; i < 5; i++){
-            Course course = new Course();
-            course.department = new Department();
-            course.department.name = getResources().getString(R.string.placeholder_course_school);
-            List<Teacher>teachers = new ArrayList<>();
-            Teacher teacher = new Teacher();
-            teacher.name = getResources().getString(R.string.placeholder_course_teacher);
-            teachers.add(teacher);
-            course.teachers = teachers;
-            course.title = getResources().getString(R.string.placeholder_course_title);
-            course.intro = getResources().getString(R.string.placeholder_course_introduction);
-            course.course_type = getResources().getString(R.string.placeholder_course_type);
-            courseList.add(course);
-        }
-        searchResultItemAdapter.notifyDataSetChanged();
+    private void search(final String keyword){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result<List<SearchApi.CourseSearched>>searchedResult = SearchApi.INSTANCE.searchCourse(keyword);
+                if(searchedResult.isErr())return;
+                List<SearchApi.CourseSearched>courses = searchedResult.get();
+                courseList.clear();
+                courseList.addAll(courses);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        searchResultItemAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        }).start();
     }
 }

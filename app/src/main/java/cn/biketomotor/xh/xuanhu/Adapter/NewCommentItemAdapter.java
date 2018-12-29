@@ -1,14 +1,18 @@
 package cn.biketomotor.xh.xuanhu.Adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -20,6 +24,7 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
         private TextView tvContent;
         private TextView tvVoteUp;
         private TextView tvVoteDown;
+        private ImageView ivAvatar;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -28,6 +33,7 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
             tvContent = itemView.findViewById(R.id.tv_content);
             tvVoteUp = itemView.findViewById(R.id.tv_vote_up);
             tvVoteDown = itemView.findViewById(R.id.tv_vote_down);
+            ivAvatar = itemView.findViewById(R.id.iv_avatar);
         }
     }
 
@@ -37,9 +43,10 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
 
     private List<Comment> commentList;
     private onItemClickListener clickListener;
-
-    public NewCommentItemAdapter(List<Comment> list) {
+    private Activity activity;
+    public NewCommentItemAdapter(List<Comment> list, Activity activity) {
         this.commentList = list;
+        this.activity = activity;
     }
 
     @Override
@@ -63,6 +70,13 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
         holder.tvContent.setText(commentList.get(position).content);
         holder.tvVoteUp.setText(String.valueOf(commentList.get(position).voteUp));
         holder.tvVoteDown.setText(String.valueOf(commentList.get(position).voteDown));
+        String url = commentList.get(position).user.avatar_url;
+        if(url != null) {
+            Util.loadImageFromUrl(url, holder.ivAvatar, activity);
+        }
+        else{
+            holder.ivAvatar.setImageResource(R.drawable.default_avatar);
+        }
         holder.itemView.setTag(position);
     }
 
@@ -74,4 +88,10 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
     public void setItemClickListener(onItemClickListener listener) {
         this.clickListener = listener;
     }
+//
+//    @Override
+//    public void onViewRecycled(ViewHolder holder){
+//        Log.i("xh_info", "dirty?");
+//        super.onViewRecycled(holder);
+//    }
 }
