@@ -23,6 +23,7 @@ public class GeneralizedClient<Req, Resp> {
     private JsonAdapter<Req> reqAdapter;
     private JsonAdapter<Resp> respAdapter;
     protected HttpUrl path;
+    protected GeneralizedClient(){}
 
     protected GeneralizedClient(JsonAdapter<Req> reqAdapter, JsonAdapter<Resp> respAdapter, HttpUrl path) {
         this.reqAdapter = reqAdapter;
@@ -86,5 +87,12 @@ public class GeneralizedClient<Req, Resp> {
             e.printStackTrace();
             return Result.err("HTTP请求IO错误");
         }
+    }
+
+    public void set(Class<Req> reqClass, JsonAdapter<Resp> respAdapter, HttpUrl path){
+        moshi = new Moshi.Builder().add(Date.class, new Rfc3339DateJsonAdapter()).build();
+        reqAdapter = moshi.adapter(reqClass);
+        this.respAdapter = respAdapter;
+        this.path = path;
     }
 }

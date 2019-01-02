@@ -43,6 +43,8 @@
 package cn.biketomotor.xh.xuanhu.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -59,11 +61,14 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
 import cn.biketomotor.xh.xuanhu.Api.CommentApi;
 import cn.biketomotor.xh.xuanhu.Api.Result;
+import cn.biketomotor.xh.xuanhu.Api.SearchApi;
 import cn.biketomotor.xh.xuanhu.Api.SessionApi;
 import cn.biketomotor.xh.xuanhu.Class.LocalUser;
 import cn.biketomotor.xh.xuanhu.Class.Sys;
+import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.Fragment.HomeFragment;
 import cn.biketomotor.xh.xuanhu.Fragment.MineFragment;
 import cn.biketomotor.xh.xuanhu.R;
@@ -81,6 +86,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView menuIcon;
     private DrawerLayout drawerLayout;
     private ImageView userAvatar;
+    private TextView tvUserName;
+    private TextView tvTitle;
+
+    private final int MINE_FRAGMENT = 0;
+    private final int HOME_FRAGMENT = 1;
+
+    private final int LOGIN_REQUEST = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +102,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void initView() {
         setContentView(R.layout.activity_main);
-        replaceFragment(new HomeFragment());
 
         btSearch = findViewById(R.id.bt_search);
         btMyComments = findViewById(R.id.bt_my_comments);
@@ -102,7 +113,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btHome = findViewById(R.id.bt_home);
         drawerLayout = findViewById(R.id.drawer_layout);
         userAvatar = findViewById(R.id.iv_avatar);
+        tvUserName = findViewById(R.id.tv_name);
         menuIcon = findViewById(R.id.menu_icon);
+        tvTitle = findViewById(R.id.tv_title);
 
         menuIcon.setOnClickListener(this);
         userAvatar.setOnClickListener(this);
@@ -114,7 +127,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btMyComments.setOnClickListener(this);
         btMyVoteUp.setOnClickListener(this);
         btMyVoteDown.setOnClickListener(this);
+
+        btSignOut.setVisibility(View.GONE);
+
         makeDrawerMoreSensitive();
+        replaceFragment(new HomeFragment());
     }
 
 
@@ -132,7 +149,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 toMine(0);
                 break;
             case R.id.bt_login:
-                LoginActivity.actionActivity(this);
+//                LoginActivity.actionActivity(this);
+                trigerLogin();
                 break;
             case R.id.bt_sign_up:
                 RegisterActivity.actionActivity(this);
@@ -200,6 +218,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if(drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+        if(fragment instanceof MineFragment){
+            tvTitle.setText("个人主页");
+        }
+        else{
+            tvTitle.setText("最新评论");
+        }
     }
 
     private void makeDrawerMoreSensitive(){
@@ -223,8 +247,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         //如果此时是在个人主页
-        Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MineFragment.class.getName());
-        if(mineFragment != null){
+        if(getCurFragmentType() == MINE_FRAGMENT){
             //那么返回首页
             replaceFragment(new HomeFragment());
         }
@@ -235,10 +258,55 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void toMine(int pos){
+        if(!LocalUser.isOnline()){
+            trigerLogin();
+            return;
+        }
+
         MineFragment mineFragment = new MineFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("pos", pos);
         mineFragment.setArguments(bundle);
         replaceFragment(mineFragment);
+    }
+
+    private int getCurFragmentType(){
+        Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MineFragment.class.getName());
+        if(mineFragment != null){
+            return MINE_FRAGMENT;
+        }
+        return HOME_FRAGMENT;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == LOGIN_REQUEST)
+        {
+            checkLoginAndUpdate();
+        }
+    }
+
+    private void trigerLogin(){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivityForResult(loginIntent, LOGIN_REQUEST);
+    }
+
+    private void checkLoginAndUpdate(){
+        if(!LocalUser.isOnline())return;
+        tvUserName.setText(LocalUser.getName());
+        Util.loadImageFromUrl(LocalUser.getAvatar_url(), userAvatar, this);
+
+        btSignOut.setVisibility(View.VISIBLE);
+        btSignUp.setVisibility(View.GONE);
+        btLogin.setVisibility(View.GONE);
+        this.getIntent().putExtra("userId", LocalUser.getId());
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkLoginAndUpdate();
     }
 }

@@ -13,6 +13,8 @@ public class CommentItem {
     private int voteUp;
     private int voteDown;
     private List<CommentItem> replies = new ArrayList<>();
+    //use parent count to solve the bug in course comments
+    private CommentItem parent;
 
     public CommentItem(
             int courseID,
@@ -62,5 +64,20 @@ public class CommentItem {
 
     public List<CommentItem> getReplies(){
         return replies;
+    }
+
+    public int getParentCommentCount(){
+        int cnt = 0;
+        CommentItem obj = parent;
+        while(obj != null){
+            cnt++;
+            obj = obj.parent;
+        }
+        return cnt;
+    }
+
+    public void addReply(CommentItem item){
+        item.parent = this;
+        replies.add(item);
     }
 }

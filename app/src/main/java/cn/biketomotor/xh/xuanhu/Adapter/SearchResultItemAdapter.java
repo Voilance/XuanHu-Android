@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
+import cn.biketomotor.xh.xuanhu.Api.SearchApi;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -34,10 +35,10 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
         void onItemClick(int position);
     }
 
-    private List<Course> courseList;
+    private List<SearchApi.CourseSearched> courseList;
     private SearchResultItemAdapter.onItemClickListener clickListener;
 
-    public SearchResultItemAdapter(List<Course> list) {
+    public SearchResultItemAdapter(List<SearchApi.CourseSearched> list) {
         this.courseList = list;
     }
 
@@ -59,7 +60,7 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
 
     @Override
     public void onBindViewHolder(final SearchResultItemAdapter.ViewHolder holder, int position) {
-        holder.tvDepartment.setText(courseList.get(position).department.name);
+        holder.tvDepartment.setText(courseList.get(position).department);
         holder.tvTeacher.setText(courseList.get(position).getNameOfTeachers());
         holder.tvTitle.setText(courseList.get(position).title);
         holder.tvIntro.setText(String.valueOf(courseList.get(position).intro));
