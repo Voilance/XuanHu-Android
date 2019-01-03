@@ -15,6 +15,7 @@ import cn.biketomotor.xh.xuanhu.Class.LocalUser;
 import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.R;
 
+//查看/修改个人信息的活动
 public class EditInfoActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "TagEditInfo";
 
@@ -38,12 +39,14 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     private String info;
     private int userId = -1;
 
+    //创建活动时初始化界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
     }
 
+    //初始化界面：获取头像、用户名等控件，从后台获取用户信息，绑定事件
     private void initView() {
         setContentView(R.layout.activity_edit_info);
 
@@ -68,6 +71,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         getInfo();
     }
 
+    //处理上传头像和修改用户信息事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -98,13 +102,17 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    //启动EditInfoActivity，并传递用户ID
     public static void actionActivity(Context context, int userId) {
         Intent intent = new Intent(context, EditInfoActivity.class);
         intent.putExtra("userId", userId);
         context.startActivity(intent);
     }
 
+    //当访问的是他人的主页时，去掉修改信息的控件，显示只读的控件
     private void makeReadOnly(){
+        //虽然可以通过setEnable(false)来使控件只读
+        //但是显示的文字会变成灰色，而且仍然保留了下划线，效果不是很好
         btSubmit.setVisibility(View.GONE);
         vNewPassword.setVisibility(View.GONE);
         vOldPassword.setVisibility(View.GONE);
@@ -114,6 +122,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         tvInfo.setVisibility(View.VISIBLE);
     }
 
+    //从后台获取用户的个人信息，主要包括：头像url，用户名，邮箱，个人简介
     private void getInfo(){
         if(userId == -1)return;
         new Thread(new Runnable() {

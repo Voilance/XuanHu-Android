@@ -22,7 +22,7 @@ import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Api.CommentApi;
 import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.R;
-
+//首页Fragment，显示最近的评论
 public class HomeFragment extends Fragment {
     private static final String TAG = "TagHome";
 
@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
     private MainActivity mainActivity;
     private int CommentPage;
 
+    //创建界面
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -66,6 +67,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    //获取最近的评论
     private void getComment() {
         // 获取一页评论
         new Thread(new Runnable() {

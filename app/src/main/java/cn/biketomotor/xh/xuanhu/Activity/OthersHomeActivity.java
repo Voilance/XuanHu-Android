@@ -20,6 +20,11 @@ import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
 import cn.biketomotor.xh.xuanhu.Fragment.MineFragment;
 import cn.biketomotor.xh.xuanhu.R;
 
+//从课程评论查看个人信息时跳转到的活动，用来显示个人信息
+//如果没有这个活动的话，就要跳转到MainActivity，
+//同时将MainActivity中的Fragment切换到个人信息Fragment
+//但这还会带来一个问题：因为MainActivity中重写了onBackPressed方法
+//所以会导致无法返回到课程评论处......
 public class OthersHomeActivity extends BaseActivity {
     private static final String TAG = "OthersHome";
     @Override
@@ -38,6 +43,7 @@ public class OthersHomeActivity extends BaseActivity {
 
     }
 
+    //启动OthersHomeActivity，同时传递用户ID
     public static void actionActivity(Context context, int userId) {
         Intent intent = new Intent(context, OthersHomeActivity.class);
         intent.putExtra("userId", userId);

@@ -18,6 +18,7 @@ public class Comment {
     public Comment parent;
     private boolean hasUpdatedParent = false;
 
+    //更新评论的父评论
     private void updateParents(){
         if(hasUpdatedParent)return;
         hasUpdatedParent = true;
@@ -28,6 +29,7 @@ public class Comment {
         }
     }
 
+    //获取评论的父评论数
     public int getParentCommentCount(){
         updateParents();
         int cnt = 0;
@@ -39,11 +41,13 @@ public class Comment {
         return cnt;
     }
 
+    //添加评论的回复
     public void addReply(Comment item){
         item.parent = this;
         nestedComment.add(item);
     }
 
+    //获取评论创建的时间，以String类型返回
     public String getCreateAtAsString(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(created_at);

@@ -15,6 +15,8 @@ public class Course {
     public String course_type;
     public List<Teacher> teachers;
     public Department department;
+
+    //获取任课教师们的名字
     public String getNameOfTeachers(){
         if(teachers.isEmpty())return "暂无信息";
         String tmp = teachers.toString();

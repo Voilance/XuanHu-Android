@@ -22,11 +22,13 @@ import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//课程评论Fragment，用来显示一个课程的所有评论
 public class CourseCommentFragment extends Fragment {
     private View view = null;
     List<Comment> courseComments = new ArrayList<>();
     HistoryCourseCommentItemAdapter historyCommentItemAdapter;
     RecyclerView rvCourseComment = null;
+    //创建Fragment的界面
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_course_comment, container, false);
@@ -46,6 +48,8 @@ public class CourseCommentFragment extends Fragment {
         return view;
     }
 
+    //获取课程的评论
+    ///其实应该命名为getCourseComments()...
     private void pollingForCourseComments(){
         courseComments.clear();
         final int courseId = getActivity().getIntent().getIntExtra("courseID", -1);
@@ -66,10 +70,12 @@ public class CourseCommentFragment extends Fragment {
         }).start();
     }
 
+    //获取适配器，用于在用户添加评论时更新数据
     public HistoryCourseCommentItemAdapter getCourseCommentAdapter(){
         return historyCommentItemAdapter;
     }
 
+    //获取课程评论数
     public List<Comment> getCourseComments(){
         return courseComments;
     }

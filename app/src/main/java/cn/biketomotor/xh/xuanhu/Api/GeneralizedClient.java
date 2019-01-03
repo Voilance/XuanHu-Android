@@ -89,6 +89,7 @@ public class GeneralizedClient<Req, Resp> {
         }
     }
 
+    //设置请求适配器、响应适配器以及Http URL
     public void set(Class<Req> reqClass, JsonAdapter<Resp> respAdapter, HttpUrl path){
         moshi = new Moshi.Builder().add(Date.class, new Rfc3339DateJsonAdapter()).build();
         reqAdapter = moshi.adapter(reqClass);

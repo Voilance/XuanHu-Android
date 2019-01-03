@@ -21,11 +21,9 @@ import cn.biketomotor.xh.xuanhu.Api.SearchApi;
 import cn.biketomotor.xh.xuanhu.CustomUIElement.TouchableDrawableEditText;
 import cn.biketomotor.xh.xuanhu.R;
 
-
+//搜索课程活动，用于根据课程名搜索课程
 public class SearchActivity extends BaseActivity implements View.OnClickListener, TouchableDrawableEditText.DrawableClickListener {
 
-    // 1. 初始化搜索框变量
-//    private SearchView searchView;
     private View btSearch;
     private TouchableDrawableEditText etSearch;
     private RecyclerView rvSearchResult;
@@ -54,6 +52,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             "数学文化"
     };
 
+    //创建活动时，获取搜索框和搜索按钮，绑定搜索事件
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +81,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
+    //启动搜索活动
     public static void actionActivity(Context context) {
         Intent intent = new Intent(context, SearchActivity.class);
         context.startActivity(intent);
     }
 
+    //处理搜索事件，以及在用户点击搜索框时显示可搜索的课程
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -100,6 +101,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    //处理搜索框右侧清除文本的按钮的点击事件
     @Override
     public void onClick(DrawablePosition target) {
         switch (target){
@@ -111,6 +113,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    //根据课程名搜索课程并更新界面
     private void search(final String keyword){
         new Thread(new Runnable() {
             @Override

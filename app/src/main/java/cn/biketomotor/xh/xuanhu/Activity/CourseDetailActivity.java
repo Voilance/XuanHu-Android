@@ -29,6 +29,7 @@ import cn.biketomotor.xh.xuanhu.Fragment.CourseCommentFragment;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//显示课程详情（课程信息和课程评论）的活动
 public class CourseDetailActivity extends BaseActivity implements View.OnClickListener,TabLayout.BaseOnTabSelectedListener {
     private static final String TAG = "TagCourseDetail";
 
@@ -38,12 +39,14 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
     private View btAddNewComment;
     private Course course;
 
+    //创建活动时初始化界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
     }
 
+    //初始化界面，绑定事件
     private void initView() {
         setContentView(R.layout.activity_course_detail);
 
@@ -59,27 +62,32 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
 
     }
 
+    //根据课程的id，启动CourseDetailActivity
     public static void actionActivity(Context context, int id) {
         Intent intent = new Intent(context, CourseDetailActivity.class);
         intent.putExtra("courseID", id);
         context.startActivity(intent);
     }
 
+    //同步TabLayout和ViewPager的选项
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         vpCourseDetail.setCurrentItem(tab.getPosition());
     }
 
+    //暂无作用
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
 
     }
 
+    //暂无作用
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
 
+    //处理“添加新的评论”按钮点击事件
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -97,7 +105,7 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
 
-
+    //弹出“添加新的评论”对话框
     public static void popupAddCommentDialog(Context context, final HistoryCourseCommentItemAdapter adapter, final Comment parentComment, final Course course, final List<Comment>comments){
         if(!LocalUser.isOnline()){
             LoginActivity.actionActivity(context);
@@ -130,6 +138,7 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
         alertDialog.show();
     }
 
+    //创建新的评论
     public static Comment makeComment(String content, final HistoryCourseCommentItemAdapter adapter, final Comment parentItem, final Course course, final List<Comment> comments){
         Comment comment = new Comment();
         comment.content = content;
@@ -160,6 +169,7 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
         return comment;
     }
 
+    //从后台获取课程信息数据
     void getCourse(){
         final int courseId = getIntent().getIntExtra("courseID", -1);
         if(courseId == -1)return;

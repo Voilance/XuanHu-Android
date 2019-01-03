@@ -23,6 +23,7 @@ import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//用户个人主页处的评论Fragment，用来显示用户的评论、用户赞同/不赞同的评论
 public class UserCommentFragment extends Fragment {
     public static final int COMMENT = 0;
     public static final int LIKE = 1;
@@ -33,6 +34,7 @@ public class UserCommentFragment extends Fragment {
     private HistoryUserCommentItemAdapter historyCommentItemAdapter;
     private Activity activity;
     private int userId;
+    //创建界面
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user_comment, container, false);
@@ -67,7 +69,7 @@ public class UserCommentFragment extends Fragment {
         return view;
     }
 
-    // 获取我的评论
+    // 获取用户的评论
     private void getMyComment() {
         if(userId == -1)return;
         userComments.clear();
@@ -87,6 +89,10 @@ public class UserCommentFragment extends Fragment {
         }).start();
     }
 
+    //获取用户赞同/不赞同的评论
+    //Comment对象中有个voteValue数据成员，它的值为1时表示赞同
+    //为-1时表示反对
+    ///其实这个方法应该命名为getCommentOfVote(...)
     private void getCommentVotes(final int voteValue){
         if(userId == -1)return;
         userComments.clear();

@@ -218,6 +218,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if(drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+
+        //在切换Fragment时修改标题
         if(fragment instanceof MineFragment){
             tvTitle.setText("个人主页");
         }
@@ -226,6 +228,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    //使DrawerLayout更敏感些
+    //不使用这个函数的话，需要手指从最左端向右滑动才能拉出drawer
+    //使用这个函数后，手指只需要从大概中间的位置滑动就能拉出drawer
     private void makeDrawerMoreSensitive(){
         try {
             Field draggerFiled = DrawerLayout.class.getDeclaredField("mLeftDragger");
@@ -243,7 +248,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    //按下返回键的时候
+    //按下返回键的时候，防止从个人主页直接退出应用
     @Override
     public void onBackPressed() {
         //如果此时是在个人主页
@@ -257,6 +262,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    //根据评论类型（我的评论、赞同的评论、不赞同的评论），切换到个人主页Fragment
     private void toMine(int pos){
         if(!LocalUser.isOnline()){
             trigerLogin();
@@ -270,6 +276,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         replaceFragment(mineFragment);
     }
 
+    //获取当前Fragment的类型
     private int getCurFragmentType(){
         Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MineFragment.class.getName());
         if(mineFragment != null){
@@ -278,6 +285,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return HOME_FRAGMENT;
     }
 
+    //从登录界面返回后，检查是否登录成功，同时更新界面
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -288,11 +296,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void trigerLogin(){
+    //弹出登录界面
+    private void trigerLogin(){ //triggerLogin
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivityForResult(loginIntent, LOGIN_REQUEST);
     }
 
+    //检查是否登录，同时更新界面
     private void checkLoginAndUpdate(){
         if(!LocalUser.isOnline())return;
         tvUserName.setText(LocalUser.getName());
@@ -304,6 +314,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.getIntent().putExtra("userId", LocalUser.getId());
     }
 
+    //在Resume时检查是否登录并更新界面
     @Override
     public void onResume(){
         super.onResume();
