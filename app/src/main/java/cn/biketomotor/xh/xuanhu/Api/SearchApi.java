@@ -13,6 +13,9 @@ import static cn.biketomotor.xh.xuanhu.Api.Constants.COURSE_LIST_ADAPTER;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
+/**
+ * 提供搜索相关的功能接口
+ */
 public enum SearchApi {
     INSTANCE;
     public static class SearchReq{
@@ -34,6 +37,10 @@ public enum SearchApi {
         public List<String> teachers;
         public String department;
 
+        /**
+         * 获取老师姓名列表
+         * @return 老师姓名列表的字符串
+         */
         public String getNameOfTeachers(){
             if(teachers.isEmpty())return "暂无信息";
             String tmp = teachers.toString();
@@ -42,6 +49,12 @@ public enum SearchApi {
     }
 
     private static final String SEARCH_PATH = "/api/search";
+
+    /**
+     * 搜索课程
+     * @param courseName 要搜索的课程名
+     * @return 搜索结果
+     */
     public Result<List<CourseSearched>> searchCourse(String courseName){
         HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(SEARCH_PATH).build();
         GeneralizedClient<SearchReq, List<CourseSearched>> client = new GeneralizedClient<>();
