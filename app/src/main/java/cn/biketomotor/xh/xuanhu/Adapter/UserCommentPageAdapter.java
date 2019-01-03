@@ -7,13 +7,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import cn.biketomotor.xh.xuanhu.Fragment.UserCommentFragment;
 
+//用户个人主页处的评论的ViewPager的适配器
 public class UserCommentPageAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
+    //根据FragmentManager和页数创建适配器
     public UserCommentPageAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
     }
+
+    //获取特定页的Fragment
     @Override
     public Fragment getItem(int position) {
         if(position >= numOfTabs)return null;
@@ -36,6 +40,7 @@ public class UserCommentPageAdapter extends FragmentPagerAdapter {
         return ret;
     }
 
+    //获取页数
     @Override
     public int getCount() {
         return numOfTabs;

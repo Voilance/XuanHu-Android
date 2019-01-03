@@ -13,6 +13,7 @@ import cn.biketomotor.xh.xuanhu.Api.SearchApi;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//搜索结果的适配器
 public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultItemAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvDepartment;
@@ -37,11 +38,12 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
 
     private List<SearchApi.CourseSearched> courseList;
     private SearchResultItemAdapter.onItemClickListener clickListener;
-
+    //构造函数
     public SearchResultItemAdapter(List<SearchApi.CourseSearched> list) {
         this.courseList = list;
     }
 
+    //创建ViewHolder
     @Override
     public SearchResultItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_search_result_item, parent, false);
@@ -58,6 +60,7 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
         return new SearchResultItemAdapter.ViewHolder(view);
     }
 
+    //填充数据
     @Override
     public void onBindViewHolder(final SearchResultItemAdapter.ViewHolder holder, int position) {
         holder.tvDepartment.setText(courseList.get(position).department);
@@ -68,11 +71,13 @@ public class SearchResultItemAdapter extends RecyclerView.Adapter<SearchResultIt
         holder.itemView.setTag(position);
     }
 
+    //获取评论数
     @Override
     public int getItemCount() {
         return courseList.size();
     }
 
+    //设置监听器
     public void setItemClickListener(SearchResultItemAdapter.onItemClickListener listener) {
         this.clickListener = listener;
     }

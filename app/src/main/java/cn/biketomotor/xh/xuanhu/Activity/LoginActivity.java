@@ -16,6 +16,7 @@ import cn.biketomotor.xh.xuanhu.Class.LocalUser;
 import cn.biketomotor.xh.xuanhu.Class.Sys;
 import cn.biketomotor.xh.xuanhu.R;
 
+//登录活动
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "TagLogin";
 
@@ -26,12 +27,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String email;
     private String password;
 
+    //创建活动时初始化界面
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
     }
 
+    //初始化界面：获取控件，绑定事件
     private void initView() {
         setContentView(R.layout.activity_login);
 
@@ -43,6 +46,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         tvRegister.setOnClickListener(this);
     }
 
+    //处理“登录”和“跳转到注册界面”事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -97,6 +101,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }).start();
     }
 
+    //启动登录活动
     public static void actionActivity(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);

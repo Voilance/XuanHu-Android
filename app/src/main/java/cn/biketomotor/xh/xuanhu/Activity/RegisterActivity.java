@@ -13,7 +13,7 @@ import cn.biketomotor.xh.xuanhu.Api.Beans.User;
 import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.Api.UserApi;
 import cn.biketomotor.xh.xuanhu.R;
-
+//注册活动
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "TagRegister";
 
@@ -47,6 +47,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         tvLogin.setOnClickListener(this);
     }
 
+    //处理“注册”和“跳转到登陆界面”的事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -112,6 +113,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }).start();
     }
 
+    //启动注册活动
     public static void actionActivity(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);

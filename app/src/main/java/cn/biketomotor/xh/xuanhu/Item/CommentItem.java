@@ -3,6 +3,7 @@ package cn.biketomotor.xh.xuanhu.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+//这个类已经被Comment取代了
 public class CommentItem {
 
     private int courseID;
@@ -13,7 +14,6 @@ public class CommentItem {
     private int voteUp;
     private int voteDown;
     private List<CommentItem> replies = new ArrayList<>();
-    //use parent count to solve the bug in course comments
     private CommentItem parent;
 
     public CommentItem(

@@ -2,7 +2,6 @@ package cn.biketomotor.xh.xuanhu.Adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,9 @@ import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Class.Util;
-import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//最新评论的适配器
 public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,11 +43,13 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
     private List<Comment> commentList;
     private onItemClickListener clickListener;
     private Activity activity;
+    //最新评论的适配器的构造函数
     public NewCommentItemAdapter(List<Comment> list, Activity activity) {
         this.commentList = list;
         this.activity = activity;
     }
 
+    //创建ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_new_comment_item, parent, false);
@@ -63,6 +64,7 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
         return new ViewHolder(view);
     }
 
+    //填充数据
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.tvUsername.setText(commentList.get(position).user.name);
@@ -80,18 +82,15 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
         holder.itemView.setTag(position);
     }
 
+    //获取评论数
     @Override
     public int getItemCount() {
         return commentList.size();
     }
 
+    //设置监听器
     public void setItemClickListener(onItemClickListener listener) {
         this.clickListener = listener;
     }
-//
-//    @Override
-//    public void onViewRecycled(ViewHolder holder){
-//        Log.i("xh_info", "dirty?");
-//        super.onViewRecycled(holder);
-//    }
+
 }

@@ -8,6 +8,8 @@ import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+//可以监听Drawable的单击事件的EditText
+//普通的EditText可以在上下左右绘制Drawable，但无法监听这些Drawable的单击事件
 public class TouchableDrawableEditText extends AppCompatAutoCompleteTextView {
 
     private Drawable drawableRight;
@@ -19,25 +21,28 @@ public class TouchableDrawableEditText extends AppCompatAutoCompleteTextView {
 
     private DrawableClickListener clickListener;
 
+    //构造函数们
     public TouchableDrawableEditText (Context context, AttributeSet attrs) {
         super(context, attrs);
-        // this Contructure required when you are using this view in xml
     }
 
     public TouchableDrawableEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
+    //绘制界面
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
     }
 
+    //监听控件大小的变化
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
     }
 
+    //同时绘制多个Drawable
     @Override
     public void setCompoundDrawables(Drawable left, Drawable top,
                                      Drawable right, Drawable bottom) {
@@ -56,6 +61,7 @@ public class TouchableDrawableEditText extends AppCompatAutoCompleteTextView {
         super.setCompoundDrawables(left, top, right, bottom);
     }
 
+    //监听触摸事件
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Rect bounds;
@@ -165,15 +171,7 @@ public class TouchableDrawableEditText extends AppCompatAutoCompleteTextView {
         return super.onTouchEvent(event);
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        drawableRight = null;
-        drawableBottom = null;
-        drawableLeft = null;
-        drawableTop = null;
-        super.finalize();
-    }
-
+    //为EditText的Drawable设置监听器
     public void setDrawableClickListener(DrawableClickListener listener) {
         this.clickListener = listener;
     }

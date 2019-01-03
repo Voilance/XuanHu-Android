@@ -22,10 +22,6 @@ public enum SearchApi {
         }
     }
 
-//    public static class SearchResp{
-//        List<Course> courses;
-//    }
-
     public static class CourseSearched{
         public int id;
         public String title;
@@ -42,6 +38,7 @@ public enum SearchApi {
     }
 
     private static final String SEARCH_PATH = "/api/search";
+    //从后台搜索课程
     public Result<List<CourseSearched>> searchCourse(String courseName){
         HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(SEARCH_PATH).build();
         GeneralizedClient<SearchReq, List<CourseSearched>> client = new GeneralizedClient<>();

@@ -26,6 +26,7 @@ class Constants {
         return moshi.adapter(type);
     }
 
+    //获取搜索结果适配器
     private static JsonAdapter<List<SearchApi.CourseSearched>> getCourseListAdapter(){
         Type type = Types.newParameterizedType(List.class, SearchApi.CourseSearched.class);
         Moshi moshi = new Moshi.Builder().add(Date.class, new Rfc3339DateJsonAdapter()).build();

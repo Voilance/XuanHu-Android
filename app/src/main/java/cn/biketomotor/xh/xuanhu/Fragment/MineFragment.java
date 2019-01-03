@@ -32,7 +32,7 @@ import cn.biketomotor.xh.xuanhu.Api.UserApi;
 import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
 import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.R;
-
+//个人主页Fragment，主要显示用户头像，名字以及评论、赞同与不赞同的评论。
 public class MineFragment extends Fragment implements View.OnClickListener, TabLayout.BaseOnTabSelectedListener {
     private static final String TAG = "TagMine";
 
@@ -45,6 +45,7 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
     private UserCommentPageAdapter pageAdapter;
     private UserApi.UserInfo userInfo;
     private View view;
+    //创建界面
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mine, container, false);
@@ -71,6 +72,7 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
         return view;
     }
 
+    //处理单击事件，单击头像或者“个人资料”按钮时跳转到个人信息活动
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -87,21 +89,25 @@ public class MineFragment extends Fragment implements View.OnClickListener, TabL
         }
     }
 
+    //同步ViewPager和TabLayout的选项
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         vpComment.setCurrentItem(tab.getPosition());
     }
 
+    //暂无作用
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
 
     }
 
+    //暂无作用
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
 
+    //获取用户的个人信息，包括评论等
     private void getInfo(){
         Activity activity = getActivity();
         final int userId = activity.getIntent().getIntExtra("userId", -1);

@@ -21,6 +21,8 @@ import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//课程评论适配器，课程的每条评论界面与最新评论和用户个人主页处的评论不同
+//课程评论有嵌套，同时有回复按钮
 public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<HistoryCourseCommentItemAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,12 +64,14 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
     private Activity activity;
     private int depth;
     private static int MAX_NESTED_NUM = 5;
+    //课程评论适配器的构造函数
     public HistoryCourseCommentItemAdapter(Activity activity, List<Comment> list, int depth) {
         this.activity = activity;
         this.commentItemList = list;
         this.depth = depth;
     }
 
+    //创建ViewHolder
     @Override
     public HistoryCourseCommentItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_course_comment_item, parent, false);
@@ -84,6 +88,7 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
         return new HistoryCourseCommentItemAdapter.ViewHolder(view);
     }
 
+    //填充数据
     @Override
     public void onBindViewHolder(final HistoryCourseCommentItemAdapter.ViewHolder holder, int position) {
         final Comment item = commentItemList.get(position);
@@ -137,15 +142,32 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
         holder.itemView.setTag(position);
     }
 
+    //获取评论的个数
     @Override
     public int getItemCount() {
         return commentItemList.size();
     }
 
+    //设置监听器
     public void setItemClickListener(HistoryCourseCommentItemAdapter.onItemClickListener listener) {
         this.clickListener = listener;
     }
 
+    //修改当前适配器所在活动的深度
+    //因为评论可以无限嵌套
+    //当嵌套过多时界面会出现问题
+    //所以当RecyclerView的嵌套层数达到MAX_NESTED_NUM时，
+    //不再显示更上一层的评论，而是提供一个跳转按钮
+    //可以跳转到MoreCommentsActivity查看更多的嵌套评论
+    //当MoreCommentsActivity的嵌套评论过多时，
+    //仍然可以跳转到另一个MoreCommentsActivity
+    //以此类推，每跳转到下一个MoreCommentsActivity, depth加1
+    //为了使得RecyclerView最多只能嵌套MAX_NESTED_NUM层
+    //需要知道当前RecyclerView已经嵌套了多少层
+    //但是似乎无法直接获取RecyclerView的父RecyclerView的个数
+    //所以通过Comment获取Comment的ParentComment的个数
+    //然后再根据depth计算出RecyclerView嵌套的层数
+    //RecyclerView嵌套的层数=Comment的ParentComment的个数 - depth * 最多允许嵌套的层数
     public void setDepth(int depth){
         this.depth = depth;
     }
