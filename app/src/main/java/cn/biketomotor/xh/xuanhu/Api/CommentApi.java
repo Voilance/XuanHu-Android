@@ -16,6 +16,7 @@ public enum CommentApi {
     INSTANCE;
 
     private static final String LATEST_PATH = "/api/latest";
+    private static final String COURSE_PATH = "/api/courses";
 
     /**
      * 获取最近的评论
@@ -26,5 +27,58 @@ public enum CommentApi {
         HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LATEST_PATH).addQueryParameter("page", String.valueOf(page)).build();
         GeneralizedClient<Object, List<Comment>> client = new GeneralizedClient<>(null, COMMENT_LIST_ADAPTER, path);
         return client.get();
+    }
+
+    static class CommentForm {
+        String content;
+        Integer parent_id;
+
+        CommentForm(String content, Integer parent_id) {
+            this.content = content;
+            this.parent_id = parent_id;
+        }
+    }
+
+    /**
+     * 给课程添加评论，或给评论添加评论
+     * @param courseId 课程的 id
+     * @param content 评论内容
+     * @param parentId 评论的父评论 id。如果这是对课程的直接评论，该参数为 null。
+     * @return 刚刚发表的评论的信息
+     */
+    public Result<Comment> create(int courseId, String content, Integer parentId) {
+        HttpUrl path = new HttpUrl.Builder()
+                .scheme(PROTOCOL)
+                .host(HOST)
+                .encodedPath(COURSE_PATH)
+                .addEncodedPathSegments(String.valueOf(courseId))
+                .addEncodedPathSegments("comments")
+                .build();
+        GeneralizedClient<CommentForm, Comment> client = new GeneralizedClient<>(CommentForm.class, Comment.class, path);
+        CommentForm form = new CommentForm(content, parentId);
+        return client.post(form);
+    }
+
+    static class VoteForm {
+        int value;
+
+        public VoteForm(int value) {
+            this.value = value;
+        }
+    }
+
+    public Result<Comment> vote(int courseId, int commentId, int voteValue) {
+        HttpUrl path = new HttpUrl.Builder()
+                .scheme(PROTOCOL)
+                .host(HOST)
+                .encodedPath(COURSE_PATH)
+                .addEncodedPathSegments(String.valueOf(courseId))
+                .addEncodedPathSegments("comments")
+                .addEncodedPathSegments(String.valueOf(commentId))
+                .addEncodedPathSegments("vote")
+                .build();
+        GeneralizedClient<VoteForm, Comment> client = new GeneralizedClient<>(VoteForm.class, Comment.class, path);
+        VoteForm form = new VoteForm(voteValue);
+        return client.post(form);
     }
 }

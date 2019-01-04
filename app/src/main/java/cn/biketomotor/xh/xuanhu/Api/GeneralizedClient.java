@@ -69,11 +69,14 @@ public class GeneralizedClient<Req, Resp> {
             RequestBody body = RequestBody.create(CONTENT_TYPE, content);
             Request request = new Request.Builder().url(path).post(body).build();
             Response response = client.newCall(request).execute();
-            ResponseBody responseBody = response.body();
+            if (response.code() == 422) {
+                return Result.err("请求无法被处理");
+            }
+            String responseBody = response.body() != null ? response.body().string() : null;
             if (responseBody != null) {
-                return parse(responseBody.string());
+                return parse(responseBody);
             } else {
-                return Result.err("响应没有Body部分，状态码：" + response.code());
+                return Result.err("响应状态码：" + response.code());
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
