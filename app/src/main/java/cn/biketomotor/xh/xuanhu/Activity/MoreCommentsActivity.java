@@ -15,13 +15,14 @@ import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
 import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
 import cn.biketomotor.xh.xuanhu.R;
 
-//当嵌套评论过多时，点击省略号跳转到这里
+//当嵌套评论过多时，点击省略号跳转到这里查看剩下的嵌套评论
 public class MoreCommentsActivity extends BaseActivity {
     private View view = null;
     List<Comment> courseComments = new ArrayList<>();
     HistoryCourseCommentItemAdapter historyCommentItemAdapter;
     RecyclerView rvCourseComment = null;
     int depth = 1;
+    //在创建活动时，获取要查看的嵌套评论，同时绑定适配器
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class MoreCommentsActivity extends BaseActivity {
 
     }
 
+    //启动MoreCommentsActivity
     public static void actionActivity(Context context, int depth) {
         Intent intent = new Intent(context, MoreCommentsActivity.class);
         intent.putExtra("depth", depth);

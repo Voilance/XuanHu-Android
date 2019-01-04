@@ -25,10 +25,6 @@ public enum SearchApi {
         }
     }
 
-//    public static class SearchResp{
-//        List<Course> courses;
-//    }
-
     public static class CourseSearched{
         public int id;
         public String title;

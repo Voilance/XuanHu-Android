@@ -11,9 +11,8 @@ import java.net.URL;
 
 public class Util {
 
+    //根据url加载图像
     public static void loadImageFromUrl(final String url, final ImageView iv, final Activity activity){
-        //test img:
-        //https://xuanhu-avatar.oss-cn-shenzhen.aliyuncs.com/MzU5NzQ5MzQwQHFxLmNvbQ
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -15,8 +15,11 @@ import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
 
+//用户个人主页处的评论的适配器
 public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryUserCommentItemAdapter.ViewHolder> {
-
+    //其实这个类可以与NewCommentItemAdapter合并成一个类
+    //因为当时觉得用户个人信息处的评论和最新评论有细微的差别（比如用户名和时间），
+    //所以将它们暂时分开
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvTitle;
@@ -44,11 +47,13 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
     private List<Comment> commentItemList;
     private onItemClickListener clickListener;
     private Activity activity;
+    //用户个人主页处的评论的适配器的构造函数
     public HistoryUserCommentItemAdapter(Activity activity, List<Comment> list) {
         this.activity = activity;
         this.commentItemList = list;
     }
 
+    //创建ViewHolder
     @Override
     public HistoryUserCommentItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_user_comment_item, parent, false);
@@ -65,6 +70,7 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
         return new ViewHolder(view);
     }
 
+    //填充数据
     @Override
     public void onBindViewHolder(final HistoryUserCommentItemAdapter.ViewHolder holder, int position) {
         holder.tvTitle.setText(commentItemList.get(position).course.title);
@@ -82,11 +88,13 @@ public class HistoryUserCommentItemAdapter extends RecyclerView.Adapter<HistoryU
         }
     }
 
+    //获取评论的个数
     @Override
     public int getItemCount() {
         return commentItemList.size();
     }
 
+    //设置监听器
     public void setItemClickListener(HistoryUserCommentItemAdapter.onItemClickListener listener) {
         this.clickListener = listener;
     }
