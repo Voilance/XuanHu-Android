@@ -7,6 +7,9 @@ import okhttp3.HttpUrl;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
+/**
+ * 提供登录状态相关的功能接口
+ */
 public enum SessionApi {
     INSTANCE;
 
@@ -35,6 +38,12 @@ public enum SessionApi {
         public String description;
     }
 
+    /**
+     * 用户登录
+     * @param email 用户的电子邮箱地址
+     * @param password 用户的密码
+     * @return 用户登录的结果
+     */
     public Result<LoginResult> login(String email, String password) {
         HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LOGIN_PATH).build();
         GeneralizedClient<LoginForm, LoginResult> client = new GeneralizedClient<>(LoginForm.class, LoginResult.class, path);
@@ -49,6 +58,10 @@ public enum SessionApi {
         public boolean success = true;
     }
 
+    /**
+     * 用户登出系统
+     * @return 用户登出的结果
+     */
     public Result<LogoutResult> logout() {
         HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(LOGOUT_PATH).build();
         GeneralizedClient<LogoutForm, LogoutResult> client = new GeneralizedClient<>(LogoutForm.class, LogoutResult.class, path);

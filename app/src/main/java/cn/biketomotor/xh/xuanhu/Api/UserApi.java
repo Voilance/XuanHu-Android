@@ -9,6 +9,9 @@ import static cn.biketomotor.xh.xuanhu.Api.Constants.COMMENT_LIST_ADAPTER;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
+/**
+ * 提供用户相关的功能接口
+ */
 public enum UserApi {
     INSTANCE;
 
@@ -27,6 +30,13 @@ public enum UserApi {
         }
     }
 
+    /**
+     * 注册用户
+     * @param name 用户姓名
+     * @param email 用户的电子邮件地址
+     * @param password 用户的密码
+     * @return 注册结果。如果注册成功将返回注册信息，否则会有错误信息。
+     */
     public Result<UserInfo> register(String name, String email, String password) {
         HttpUrl path = new HttpUrl.Builder().scheme(PROTOCOL).host(HOST).encodedPath(REGISTER_PATH).build();
         GeneralizedClient<RegisterForm, UserInfo> client = new GeneralizedClient<>(RegisterForm.class, UserInfo.class, path);
@@ -41,6 +51,11 @@ public enum UserApi {
         }
     }
 
+    /**
+     * 获取用户信息
+     * @param id 用户的 id
+     * @return 用户信息
+     */
     public Result<UserInfo> getUserInfo(int id) {
         HttpUrl path = new HttpUrl.Builder()
                 .scheme(PROTOCOL)
@@ -52,6 +67,11 @@ public enum UserApi {
         return client.get();
     }
 
+    /**
+     * 获取用户的评论列表
+     * @param id 用户的 id
+     * @return 用户的评论列表
+     */
     public Result<List<Comment>> getUserComments(int id) {
         HttpUrl path = new HttpUrl.Builder()
                 .scheme(PROTOCOL)
@@ -64,6 +84,11 @@ public enum UserApi {
         return client.get();
     }
 
+    /**
+     * 获取用户的投过票的评论列表
+     * @param id 用户的 id
+     * @return 用户投过票的评论列表
+     */
     public Result<List<Comment>> getUserVotes(int id) {
         HttpUrl path = new HttpUrl.Builder()
                 .scheme(PROTOCOL)

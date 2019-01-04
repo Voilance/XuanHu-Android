@@ -20,13 +20,20 @@ class Constants {
     static final JsonAdapter<List<Comment>> COMMENT_LIST_ADAPTER = getCommentListAdapter();
     static final JsonAdapter<List<SearchApi.CourseSearched>> COURSE_LIST_ADAPTER = getCourseListAdapter();
 
+    /**
+     * 生成 Moshi 使用的评论列表适配器
+     * @return 评论列表适配器
+     */
     private static JsonAdapter<List<Comment>> getCommentListAdapter() {
         Type type = Types.newParameterizedType(List.class, Comment.class);
         Moshi moshi = new Moshi.Builder().add(Date.class, new Rfc3339DateJsonAdapter()).build();
         return moshi.adapter(type);
     }
 
-    //获取搜索结果适配器
+    /**
+     * 生成 Moshi 使用的课程列表适配器
+     * @return 课程列表适配器
+     */
     private static JsonAdapter<List<SearchApi.CourseSearched>> getCourseListAdapter(){
         Type type = Types.newParameterizedType(List.class, SearchApi.CourseSearched.class);
         Moshi moshi = new Moshi.Builder().add(Date.class, new Rfc3339DateJsonAdapter()).build();
