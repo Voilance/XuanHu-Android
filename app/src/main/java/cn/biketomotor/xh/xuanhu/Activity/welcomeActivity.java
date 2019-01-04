@@ -12,12 +12,14 @@ import android.view.WindowManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class welcomeActivity extends AppCompatActivity{
+import cn.biketomotor.xh.xuanhu.R;
+
+public class WelcomeActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_welcome);
+        //此处是为了去除Logo上方系统自带的暗色
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
              Window window = getWindow();
@@ -30,22 +32,24 @@ public class welcomeActivity extends AppCompatActivity{
         }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_welcome);
         startMainActivity();
     }
 
+    //欢迎页面的启动代码延迟1000ms后方才显示主页
     private void startMainActivity(){
 
         TimerTask delayTask = new TimerTask() {
             @Override
             public void run() {
 
-                Intent mainIntent = new Intent(welcomeActivity.this,LoginActivity.class);
+                Intent mainIntent = new Intent(WelcomeActivity.this,MainActivity.class);
                 startActivity(mainIntent);
-                welcomeActivity.this.finish();
+                WelcomeActivity.this.finish();
             }
         };
         Timer timer = new Timer();
-        timer.schedule(delayTask,2000);
+        timer.schedule(delayTask,1000);
     }
 }
 

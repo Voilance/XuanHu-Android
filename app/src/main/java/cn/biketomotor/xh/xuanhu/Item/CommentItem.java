@@ -1,5 +1,9 @@
 package cn.biketomotor.xh.xuanhu.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//这个类已经被Comment取代了
 public class CommentItem {
 
     private int courseID;
@@ -9,6 +13,8 @@ public class CommentItem {
     private String createdAt;
     private int voteUp;
     private int voteDown;
+    private List<CommentItem> replies = new ArrayList<>();
+    private CommentItem parent;
 
     public CommentItem(
             int courseID,
@@ -54,5 +60,24 @@ public class CommentItem {
 
     public int getVoteDown() {
         return voteDown;
+    }
+
+    public List<CommentItem> getReplies(){
+        return replies;
+    }
+
+    public int getParentCommentCount(){
+        int cnt = 0;
+        CommentItem obj = parent;
+        while(obj != null){
+            cnt++;
+            obj = obj.parent;
+        }
+        return cnt;
+    }
+
+    public void addReply(CommentItem item){
+        item.parent = this;
+        replies.add(item);
     }
 }

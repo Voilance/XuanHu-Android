@@ -3,13 +3,17 @@ package cn.biketomotor.xh.xuanhu.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import cn.biketomotor.xh.xuanhu.Api.Beans.User;
+import cn.biketomotor.xh.xuanhu.Api.Result;
+import cn.biketomotor.xh.xuanhu.Api.UserApi;
 import cn.biketomotor.xh.xuanhu.R;
-
+//注册活动
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "TagRegister";
 
@@ -31,7 +35,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initView() {
-        setContentView(R.layout.test_activity_register);
+        setContentView(R.layout.activity_register);
 
         etName = findViewById(R.id.et_name);
         etEmail = findViewById(R.id.et_email);
@@ -43,6 +47,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         tvLogin.setOnClickListener(this);
     }
 
+    //处理“注册”和“跳转到登陆界面”的事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -54,6 +59,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.tv_login:
                 // 销毁活动返回登陆活动
                 finish();
+                LoginActivity.actionActivity(this);
                 break;
             default:
                 break;
@@ -87,8 +93,27 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     // 向后端发送注册请求
     private void onRegister() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result<UserApi.UserInfo> result = UserApi.INSTANCE.register(name, email, password);
+                if (result.isOk()) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast("注册成功");
+                            finish();
+                            LoginActivity.actionActivity(RegisterActivity.this);
+                        }
+                    });
+                } else {
+                    Log.e(TAG, result.getErrorMessage());
+                }
+            }
+        }).start();
     }
 
+    //启动注册活动
     public static void actionActivity(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);

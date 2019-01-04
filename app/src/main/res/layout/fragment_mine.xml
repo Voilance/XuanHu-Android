@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <FrameLayout
@@ -38,12 +37,13 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/stxinwei"
-                android:text="@string/placeholder_user_name"
-                android:textSize="30dp" />
+                android:text=""
+                android:textSize="30dp"
+                android:layout_marginBottom="@dimen/normal_margin"/>
         </LinearLayout>
 
     </FrameLayout>

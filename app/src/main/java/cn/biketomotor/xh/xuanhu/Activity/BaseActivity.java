@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import cn.biketomotor.xh.xuanhu.Class.ActivityMgr;
 
+//actionbar的简单封装
 public class BaseActivity extends AppCompatActivity {
 
     @Override

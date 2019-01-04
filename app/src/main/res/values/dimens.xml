@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	 <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-      <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_height">160dp</dimen>
 
     <!-- MaterialSearchView -->
@@ -22,16 +22,23 @@
     <dimen name="comment_item_margin">8dp</dimen>
     <dimen name="comment_item_padding">8dp</dimen>
     <dimen name="normal_spacing">10dp</dimen>
+
     <dimen name="normal_margin_plus_plus">20dp</dimen>
     <dimen name="normal_margin_plus">15dp</dimen>
     <dimen name="normal_margin">10dp</dimen>
     <dimen name="normal_margin_minus">5dp</dimen>
+
     <dimen name="normal_padding">10dp</dimen>
     <dimen name="normal_padding_plus">13dp</dimen>
     <dimen name="normal_padding_minus">5dp</dimen>
+
     <dimen name="scrollbar_size">7dp</dimen>
-    <dimen name="normal_shadow">5dp</dimen>
     <dimen name="fab_font_icon_size">30dp</dimen>
+
+    <!-- for shadow -->
+    <dimen name="normal_shadow">5dp</dimen>
+    <dimen name="normal_shadow_lower">3dp</dimen>
+    <dimen name="normal_shadow_higher">7dp</dimen>
 
     <!-- for user info -->
     <dimen name="user_info_item_icon_size">20dp</dimen>
@@ -59,8 +66,15 @@
     <dimen name="course_introduction_content_size">18dp</dimen>
 
     <dimen name="course_comments_icon_size">30dp</dimen>
+
     <!-- for action bar -->
     <dimen name="action_bar_text_size">20dp</dimen>
 
-
+    <!-- for text size -->
+    <dimen name="normal_text_size">25dp</dimen>
+    <dimen name="normal_text_size_minus">20dp</dimen>
+    <dimen name="normal_text_size_minus_minus">15dp</dimen>
+    <dimen name="normal_text_size_plus">30dp</dimen>
+    <dimen name="normal_text_size_plus_plus">35dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

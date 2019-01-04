@@ -1,101 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
 
-        <LinearLayout
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="30dp">
+        <!--  Title -->
+        <TextView
+            android:id="@+id/link_gohome"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:paddingTop="60dp"
+            android:text="选乎"
+            android:textColor="#00B2EE"
+            android:textSize="32dip" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="选乎,让选课简单而美好"
+            android:textSize="16dip" />
+
+
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/white"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="30dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-            <!--  Title -->
-            <TextView
-                android:id="@+id/link_gohome"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:paddingTop="60dp"
-                android:text="选乎"
-                android:textColor="#00B2EE"
-                android:textSize="32dip" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="选乎,让选课简单而美好"
-                android:textColor="#FFFFFF"
-                android:textSize="16dip" />
-
-
-            <!--  Email Label -->
-            <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="4dp"
+                android:hint="电子邮箱"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/input_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/textview_style"
-                    android:drawableLeft="@drawable/email"
-                    android:drawablePadding="4dp"
-                    android:hint="电子邮箱"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#FFFFFF" />
-            </android.support.design.widget.TextInputLayout>
+        <!--  Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
 
-            <!--  Password Label -->
-            <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
+                android:hint="密码"
+                android:drawableStart="@drawable/password"
+                android:drawablePadding="4dp"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/input_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/textview_style"
-                    android:drawableLeft="@drawable/password"
-                    android:drawablePadding="4dp"
-                    android:hint="密码"
-                    android:inputType="textPassword"
-                    android:textColor="#FFFFFF" />
-            </android.support.design.widget.TextInputLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bt_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn"
+            android:padding="12dp"
+            android:text="登录"
+            android:textColor="@color/white"/>
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/btn"
-                android:padding="12dp"
-                android:text="登录"
-                android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="立即注册"
+            android:textColor="#00B2EE"
+            android:textSize="16dip" />
 
-            <TextView
-                android:id="@+id/link_signup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="立即注册"
-                android:textColor="#00B2EE"
-                android:textSize="16dip" />
+    </LinearLayout>
+</RelativeLayout>
 
-        </LinearLayout>
-
-</ScrollView>

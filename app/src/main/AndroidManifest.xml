@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.biketomotor.xh.xuanhu" >
+    package="cn.biketomotor.xh.xuanhu">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/xuanhu2"
-
-        android:theme="@style/AppTheme.Dark" >
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.welcomeActivity"
-            android:windowSoftInputMode="adjustNothing" android:theme="@style/WelcomeThem" >
+            android:name=".Activity.WelcomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".Activity.SignupActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".Activity.HomepageActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".Activity.SearchDemo" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".Activity.designsearchview" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".Activity.MainActivity"  android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".Activity.EditInfoActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".Activity.CourseDetail" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".Activity.BaseActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".Activity.RegisterActivity" android:theme="@style/AppTheme.Dark"/>
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.SearchActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.EditInfoActivity" />
+        <activity android:name=".Activity.CourseDetailActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Activity.OthersHomeActivity" />
+        <activity android:name=".Activity.MoreCommentsActivity"></activity>
     </application>
 
 </manifest>

@@ -1,17 +1,21 @@
 package cn.biketomotor.xh.xuanhu.CustomUIElement;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-
+import android.widget.ImageButton;
+//可拖拽的FrameLayout,用来作为可拖拽按钮的容器
 public class MoveableFrameLayout extends FrameLayout{
     private final static float CLICK_DRAG_TOLERANCE = 10; // Often, there will be a slight, unintentional, drag when the user taps the FAB, so we need to account for this.
     private float downRawX, downRawY;
     private float dX, dY;
+    private View.OnClickListener clickListener;
 
+    //构造函数们
     public MoveableFrameLayout(Context context) {
         super(context);
     }
@@ -28,6 +32,7 @@ public class MoveableFrameLayout extends FrameLayout{
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    //在分发TouchEvent时处理拖拽事件
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         View view = this;
@@ -61,7 +66,6 @@ public class MoveableFrameLayout extends FrameLayout{
                     .start();
         }
         else if (action == MotionEvent.ACTION_UP) {
-
             float upRawX = motionEvent.getRawX();
             float upRawY = motionEvent.getRawY();
 
@@ -69,9 +73,19 @@ public class MoveableFrameLayout extends FrameLayout{
             float upDY = upRawY - downRawY;
 
             if (Math.abs(upDX) < CLICK_DRAG_TOLERANCE && Math.abs(upDY) < CLICK_DRAG_TOLERANCE) { // A click
-                performClick();
+                super.setOnClickListener(clickListener);
+            }
+            else{
+                super.setOnClickListener(null);
             }
         }
         return super.dispatchTouchEvent(motionEvent);
+    }
+
+    //设置单击监听器
+    @Override
+    public void setOnClickListener(View.OnClickListener listener){
+        super.setOnClickListener(listener);
+        clickListener = listener;
     }
 }

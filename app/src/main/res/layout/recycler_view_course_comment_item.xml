@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper -->
+<FrameLayout
+    android:id="@+id/item_wrapper"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/comment_item_margin"
+    android:layout_marginLeft="@dimen/comment_item_margin"
+    android:layout_marginBottom="@dimen/comment_item_margin"
+    android:background="@drawable/comment_item_background"
+    android:elevation="@dimen/normal_shadow"
+    android:clickable="true">
+
+    <!-- main container -->
+    <LinearLayout
+        android:id="@+id/comment_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/comment_item_padding"
+        android:paddingLeft="@dimen/comment_item_padding"
+        android:paddingBottom="@dimen/comment_item_padding"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:divider="@drawable/vertical_space_divider">
+
+        <!-- header(name, time, avatar) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <!-- comment user -->
+                <TextView
+                    android:id="@+id/tv_user"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/comment_user_size_bigger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_comment_user" />
+
+                <!-- comment date -->
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:textSize="@dimen/comment_date_size_bigger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_comment_date" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_gravity="center"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/default_avatar"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/round_background_with_border"
+                    app:riv_oval="true" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- comment content -->
+        <TextView
+            android:fontFamily="@font/stxinwei"
+            android:textSize="@dimen/comment_content_size"
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_comment_content" />
+
+        <!-- footer(bt_reply, vote_up, vote_down -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_marginRight="@dimen/normal_margin">
+
+            <!-- reply icon -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left">
+                <TextView
+                    android:id="@+id/bt_reply"
+                    android:text="@string/course_comment_reply_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:fontFamily="@font/reply_icon"
+                    android:padding="@dimen/thumb_padding"
+                    android:textSize="@dimen/comment_thumb_size"
+                    android:textColor="@color/steelblue" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_more_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:fontFamily="@font/more"
+                android:padding="@dimen/thumb_padding"
+                android:text="@string/more_icon"
+                android:textSize="@dimen/comment_thumb_size"
+                android:visibility="invisible"/>
+
+            <!-- vote up -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <!-- vote up buttton -->
+                <TextView
+                    android:id="@+id/bt_vote_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:fontFamily="@font/user_home_items"
+                    android:padding="@dimen/thumb_padding"
+                    android:text="@string/like_icon"
+                    android:textColor="@color/steelblue"
+                    android:textSize="@dimen/comment_thumb_size" />
+
+                <!-- vote up num -->
+                <TextView
+                    android:id="@+id/tv_vote_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+            </LinearLayout>
+
+            <!-- vote down -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <!-- vote down button -->
+                <TextView
+                    android:id="@+id/bt_vote_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:fontFamily="@font/user_home_items"
+                    android:padding="@dimen/thumb_padding"
+                    android:text="@string/unlike_icon"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="@dimen/comment_thumb_size" />
+
+                <!-- vote down num -->
+                <TextView
+                    android:id="@+id/tv_vote_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- nested comment item -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_nested_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</FrameLayout>
