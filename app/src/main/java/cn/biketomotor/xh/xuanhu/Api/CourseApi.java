@@ -10,11 +10,19 @@ import static cn.biketomotor.xh.xuanhu.Api.Constants.COMMENT_LIST_ADAPTER;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.HOST;
 import static cn.biketomotor.xh.xuanhu.Api.Constants.PROTOCOL;
 
+/**
+ * 提供课程相关的功能接口
+ */
 public enum CourseApi {
     INSTANCE;
 
     private static final String COURSE_PATH = "/api/courses";
 
+    /**
+     * 获取课程信息
+     * @param id 课程的 id
+     * @return 课程信息
+     */
     public Result<Course> getCourse(int id) {
         HttpUrl path = new HttpUrl.Builder()
                 .scheme(PROTOCOL)
@@ -26,6 +34,11 @@ public enum CourseApi {
         return client.get();
     }
 
+    /**
+     * 获取课程的评论
+     * @param id 课程的 id
+     * @return 课程的评论列表
+     */
     public Result<List<Comment>> getCourseComments(int id) {
         HttpUrl path = new HttpUrl.Builder()
                 .scheme(PROTOCOL)
