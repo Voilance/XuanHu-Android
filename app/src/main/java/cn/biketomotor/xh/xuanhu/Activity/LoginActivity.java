@@ -1,5 +1,6 @@
 package cn.biketomotor.xh.xuanhu.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tvRegister;
     private String email;
     private String password;
+    public static final int LOGIN_REQUEST = 0;
 
     //创建活动时初始化界面
     @Override
@@ -105,5 +107,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public static void actionActivity(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
+    }
+
+    //启动登录活动
+    public static void actionActivityForResult(Activity activity, int reqCode){
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivityForResult(intent, reqCode);
     }
 }

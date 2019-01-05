@@ -2,6 +2,7 @@ package cn.biketomotor.xh.xuanhu.Adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,7 @@ public class NewCommentItemAdapter extends RecyclerView.Adapter<NewCommentItemAd
         else{
             holder.ivAvatar.setImageResource(R.drawable.default_avatar);
         }
+
         holder.itemView.setTag(position);
     }
 

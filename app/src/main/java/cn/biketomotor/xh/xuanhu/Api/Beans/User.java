@@ -1,11 +1,12 @@
 package cn.biketomotor.xh.xuanhu.Api.Beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 表示用户的模型类
  */
-public class User {
+public class User implements Serializable {
     public int id;
     public String email;
     public String name;

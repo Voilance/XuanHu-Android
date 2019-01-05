@@ -92,12 +92,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
                     android:fontFamily="@font/user_home_items"
                     android:padding="@dimen/thumb_padding"
                     android:text="@string/like_icon"
-                    android:textColor="@color/steelblue"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/comment_thumb_size" />
 
                 <TextView
@@ -115,12 +113,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
                     android:fontFamily="@font/user_home_items"
                     android:padding="@dimen/thumb_padding"
                     android:text="@string/unlike_icon"
-                    android:textColor="@android:color/holo_red_light"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/comment_thumb_size" />
 
                 <TextView

@@ -1,5 +1,6 @@
 package cn.biketomotor.xh.xuanhu.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.biketomotor.xh.xuanhu.Activity.LoginActivity;
 import cn.biketomotor.xh.xuanhu.Activity.OthersHomeActivity;
 import cn.biketomotor.xh.xuanhu.Adapter.HistoryCourseCommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Adapter.HistoryUserCommentItemAdapter;
@@ -78,5 +80,16 @@ public class CourseCommentFragment extends Fragment {
     //获取课程评论数
     public List<Comment> getCourseComments(){
         return courseComments;
+    }
+
+    //当从登录界面返回时，更新数据（主要更新的是赞和踩按钮的颜色）
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == LoginActivity.LOGIN_REQUEST)
+        {
+            pollingForCourseComments();
+        }
     }
 }

@@ -2,13 +2,14 @@ package cn.biketomotor.xh.xuanhu.Api.Beans;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 表示课程的模型类
  */
-public class Course {
+public class Course implements Serializable {
     public int id;
     public String title;
     public Date created_at;

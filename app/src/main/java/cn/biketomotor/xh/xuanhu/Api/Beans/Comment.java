@@ -1,5 +1,6 @@
 package cn.biketomotor.xh.xuanhu.Api.Beans;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * 表示评论的模型类
  */
-public class Comment {
+public class Comment implements Serializable {
     public int id;
     public String content;
     public Date created_at;
