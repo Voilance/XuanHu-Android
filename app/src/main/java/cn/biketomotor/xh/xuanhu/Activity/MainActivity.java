@@ -92,7 +92,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final int MINE_FRAGMENT = 0;
     private final int HOME_FRAGMENT = 1;
 
-    private final int LOGIN_REQUEST = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -290,7 +289,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == LOGIN_REQUEST)
+        if(requestCode == LoginActivity.LOGIN_REQUEST)
         {
             checkLoginAndUpdate();
         }
@@ -299,7 +298,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     //弹出登录界面
     private void trigerLogin(){ //triggerLogin
         Intent loginIntent = new Intent(this, LoginActivity.class);
-        startActivityForResult(loginIntent, LOGIN_REQUEST);
+        startActivityForResult(loginIntent, LoginActivity.LOGIN_REQUEST);
     }
 
     //检查是否登录，同时更新界面

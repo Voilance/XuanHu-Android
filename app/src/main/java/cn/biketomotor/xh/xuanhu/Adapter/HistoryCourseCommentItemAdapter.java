@@ -4,19 +4,29 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Activity.CourseDetailActivity;
+import cn.biketomotor.xh.xuanhu.Activity.LoginActivity;
 import cn.biketomotor.xh.xuanhu.Activity.MoreCommentsActivity;
 import cn.biketomotor.xh.xuanhu.Activity.OthersHomeActivity;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
+import cn.biketomotor.xh.xuanhu.Api.CommentApi;
+import cn.biketomotor.xh.xuanhu.Api.CourseApi;
+import cn.biketomotor.xh.xuanhu.Api.Result;
 import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
+import cn.biketomotor.xh.xuanhu.Class.LocalUser;
 import cn.biketomotor.xh.xuanhu.Class.Util;
 import cn.biketomotor.xh.xuanhu.Item.CommentItem;
 import cn.biketomotor.xh.xuanhu.R;
@@ -90,7 +100,7 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
 
     //填充数据
     @Override
-    public void onBindViewHolder(final HistoryCourseCommentItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final HistoryCourseCommentItemAdapter.ViewHolder holder, final int position) {
         final Comment item = commentItemList.get(position);
         holder.tvTime.setText(item.getCreateAtAsString());
         holder.tvVoteUp.setText(String.valueOf(item.voteUp));
@@ -104,8 +114,9 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
         else{
             Util.loadImageFromUrl(url, holder.ivAvatar, activity);
         }
+        updateVoteIconColor(item.voteValue, holder.btVoteUp, holder.btVoteDown);
 
-
+        if(item.nestedComment == null)item.nestedComment = new ArrayList<>();
         final List<Comment> replies = item.nestedComment;
         final HistoryCourseCommentItemAdapter hccia = new HistoryCourseCommentItemAdapter(activity, replies, depth);
         hccia.setItemClickListener(new onItemClickListener() {
@@ -123,7 +134,9 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
             holder.btReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CourseDetailActivity.popupAddCommentDialog(activity, hccia, item, null, null);
+                    Serializable courseSer = activity.getIntent().getSerializableExtra("course");
+                    if(courseSer == null)return;
+                    CourseDetailActivity.popupAddCommentDialog(activity, hccia, item, (Course)courseSer, null);
                 }
             });
         }
@@ -133,13 +146,75 @@ public class HistoryCourseCommentItemAdapter extends RecyclerView.Adapter<Histor
             holder.tvMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Serializable courseSer = activity.getIntent().getSerializableExtra("course");
+                    if(courseSer == null)return;
                     GlobalDataChannel.targetCommentItem = item;
-                    MoreCommentsActivity.actionActivity(activity, depth + 1);
+                    MoreCommentsActivity.actionActivity(activity, depth + 1, (Course)courseSer);
                 }
             });
         }
 
+        holder.btVoteUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vote(item.voteValue == 1? 0 : 1, item, holder);
+            }
+        });
+
+        holder.btVoteDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vote(item.voteValue == -1? 0 : -1, item, holder);
+            }
+        });
         holder.itemView.setTag(position);
+    }
+
+    //赞或踩一条评论，或者取消赞踩
+    private void vote(final int val, final Comment item, final HistoryCourseCommentItemAdapter.ViewHolder holder){
+        if(!LocalUser.isOnline()){
+            LoginActivity.actionActivity(activity);
+            return;
+        }
+        Serializable courseSer = activity.getIntent().getSerializableExtra("course");
+        if(courseSer == null)return;
+        Course course = (Course)courseSer;
+        final int courseId = course.id;
+        final int commentId = item.id;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result<Comment>result = CommentApi.INSTANCE.vote(courseId, commentId, val);
+                if(result.isOk()){
+                    final Comment newComment = result.get();
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            item.voteValue = val;
+                            holder.tvVoteUp.setText(String.valueOf(newComment.voteUp));
+                            holder.tvVoteDown.setText(String.valueOf(newComment.voteDown));
+                            updateVoteIconColor(val, holder.btVoteUp, holder.btVoteDown);
+                        }
+                    });
+                }
+                else{
+                    //todo
+                }
+            }
+        }).start();
+    }
+
+    //已经赞或踩了的按钮显示为灰色，否则赞的按钮为钢蓝色，踩的按钮为红色
+    private void updateVoteIconColor(int voteValue, TextView btVoteUp, TextView btVoteDown){
+        btVoteUp.setTextColor(activity.getResources().getColor(R.color.steelblue));
+        btVoteDown.setTextColor(activity.getResources().getColor(R.color.holo_red_ligh));
+        if(voteValue == 1){
+            btVoteUp.setTextColor(activity.getResources().getColor(R.color.grey));
+        }
+        else if(voteValue == -1){
+            btVoteDown.setTextColor(activity.getResources().getColor(R.color.grey));
+        }
+
     }
 
     //获取评论的个数

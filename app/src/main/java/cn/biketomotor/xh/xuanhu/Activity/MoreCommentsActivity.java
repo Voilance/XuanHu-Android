@@ -12,6 +12,7 @@ import java.util.List;
 
 import cn.biketomotor.xh.xuanhu.Adapter.HistoryCourseCommentItemAdapter;
 import cn.biketomotor.xh.xuanhu.Api.Beans.Comment;
+import cn.biketomotor.xh.xuanhu.Api.Beans.Course;
 import cn.biketomotor.xh.xuanhu.Class.GlobalDataChannel;
 import cn.biketomotor.xh.xuanhu.R;
 
@@ -52,9 +53,10 @@ public class MoreCommentsActivity extends BaseActivity {
     }
 
     //启动MoreCommentsActivity
-    public static void actionActivity(Context context, int depth) {
+    public static void actionActivity(Context context, int depth, Course course) {
         Intent intent = new Intent(context, MoreCommentsActivity.class);
         intent.putExtra("depth", depth);
+        intent.putExtra("course", course);
         context.startActivity(intent);
     }
 }
